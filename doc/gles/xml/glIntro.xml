@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glIntro">
+
+  <refmeta>
+    <refentrytitle>glIntro</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>glIntro</refname>
+    <refpurpose>
+      introduction to <acronym>OpenGL ES</acronym>
+    </refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Overview</title>
+
+    <para>
+      OpenGL ES (GL) is a 3D-oriented renderer for embedded systems.
+    </para>
+
+    <para>
+      See <citerefentry><refentrytitle>eglIntro</refentrytitle></citerefentry>
+      for a short example program.
+    </para>
+  </refsect1>
+ 
+  <refsect1>
+    <title>OpenGL Extensions</title>
+
+    <para>
+      The following extensions currently exist. Note that the set
+      of supported extensions depends on the implementation.
+    </para>
+
+    <variablelist>
+      <varlistentry>
+        <term><constant>OES_query_matrix</constant></term>
+        <listitem><para>
+          provides a way to query the values of the current matrix.
+          Each matrix value is returned as a mantissa/exponent pair.
+          If the implementation supports tracking of invalid values, 
+          they are indicated in the returned status value.
+        </para></listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Using OpenGL ES Extensions</title>
+
+    <para>
+      Function names and tokens for OpenGL ES extensions are suffixed with OES
+      or with a vendor-specfic acronym. OES is used for extensions that have
+      been reviewed by the Khronos Group and might be supported by more than
+      one OpenGL ES vendor.
+    </para>
+
+    <para>
+      All supported extensions have an associated macro definition in
+      <filename>gl.h</filename> and
+      a corresponding token in the extensions string returned by
+      <citerefentry><refentrytitle>glGetString</refentrytitle></citerefentry>.
+      For example, if the <constant>OES_query_matrix</constant> extension
+      is supported, then the token
+      <constant>GL_OES_query_matrix</constant> will be defined in
+      <filename>gl.h</filename> and
+      <constant>GL_OES_query_matrix</constant> will appear in the
+      extensions string returned by
+      <citerefentry><refentrytitle>glGetString</refentrytitle></citerefentry>.
+    </para>
+
+    <para>
+      The definitions in <filename>gl.h</filename>
+      can be used at compile time to determine if an
+      extension's tokens and procedures exist in the OpenGL ES library. However,
+      the tokens returned by
+      <citerefentry><refentrytitle>glGetString</refentrytitle></citerefentry>
+      must be consulted at runtime to determine whether the extension is
+      supported on the particular context in use at that moment.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Files</title>
+
+    <variablelist>
+      <varlistentry>
+	<term><filename>GLES/gl.h</filename></term>
+	<listitem><para>
+          OpenGL ES header file
+        </para></listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+      <citerefentry><refentrytitle>eglIntro</refentrytitle></citerefentry>,
+      <citerefentry><refentrytitle>glGetString</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+
+</refentry>

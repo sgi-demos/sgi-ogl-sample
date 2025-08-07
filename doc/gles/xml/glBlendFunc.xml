@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glBlendFunc">
+  <refmeta>
+    <refentrytitle>glBlendFunc</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>glBlendFunc</refname>
+    <refpurpose>specify pixel arithmetic</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glBlendFunc</function></funcdef>
+        <paramdef>GLenum <parameter>sfactor</parameter></paramdef>
+        <paramdef>GLenum <parameter>dfactor</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>sfactor</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies how the red, green, blue, and alpha
+          source blending factors are computed. The following
+          symbolic constants are accepted: 
+          <constant>GL_ZERO</constant>, 
+          <constant>GL_ONE</constant>, 
+          <constant>GL_DST_COLOR</constant>, 
+          <constant>GL_ONE_MINUS_DST_COLOR</constant>, 
+          <constant>GL_SRC_ALPHA</constant>, 
+          <constant>GL_ONE_MINUS_SRC_ALPHA</constant>, 
+          <constant>GL_DST_ALPHA</constant>, 
+          <constant>GL_ONE_MINUS_DST_ALPHA</constant>, and 
+          <constant>GL_SRC_ALPHA_SATURATE</constant>. The initial value is 
+          <constant>GL_ONE</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>dfactor</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies how the red, green, blue, and alpha
+          destination blending factors are computed. Eight symbolic
+          constants are accepted: 
+          <constant>GL_ZERO</constant>, 
+          <constant>GL_ONE</constant>, 
+          <constant>GL_SRC_COLOR</constant>, 
+          <constant>GL_ONE_MINUS_SRC_COLOR</constant>, 
+          <constant>GL_SRC_ALPHA</constant>, 
+          <constant>GL_ONE_MINUS_SRC_ALPHA</constant>, 
+          <constant>GL_DST_ALPHA</constant>, and 
+          <constant>GL_ONE_MINUS_DST_ALPHA</constant>. The initial value is 
+          <constant>GL_ZERO</constant>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>Pixels can be drawn using a function that blends the
+    incoming (source) values with the values that are already in
+    the color buffer (the destination values). Use 
+    <citerefentry><refentrytitle>glEnable</refentrytitle></citerefentry> and 
+    <citerefentry><refentrytitle>glDisable</refentrytitle></citerefentry>
+    with argument <constant>GL_BLEND</constant>
+    to enable and disable blending.
+    Blending is initially disabled.
+    </para>
+
+    <para>
+    <function>glBlendFunc</function>
+    defines the operation of blending when it is enabled. 
+    <parameter>sfactor</parameter>
+    specifies which of nine methods is used to scale the source
+    color components. 
+    <parameter>dfactor</parameter>
+    specifies which of eight methods is used to scale the
+    destination color components. The eleven possible methods are
+    described in the following table. Each method defines four
+    scale factors, one each for red, green, blue, and alpha.</para>
+
+    <para>In the table and in subsequent equations, source and
+    destination color components are referred to as 
+    <inlineequation><math><mrow><mo>(</mo>
+      <msub><mi>R</mi><mi>s</mi></msub><mo>,</mo>
+      <msub><mi>G</mi><mi>s</mi></msub><mo>,</mo>
+      <msub><mi>B</mi><mi>s</mi></msub><mo>,</mo>
+      <msub><mi>A</mi><mi>s</mi></msub>
+    <mo>)</mo></mrow></math></inlineequation>
+    and 
+    <inlineequation><math><mrow><mo>(</mo>
+      <msub><mi>R</mi><mi>d</mi></msub><mo>,</mo>
+      <msub><mi>G</mi><mi>d</mi></msub><mo>,</mo>
+      <msub><mi>B</mi><mi>d</mi></msub><mo>,</mo>
+      <msub><mi>A</mi><mi>d</mi></msub>
+    <mo>)</mo></mrow></math></inlineequation>.
+    They are understood to have integer values between 0 and 
+    <inlineequation><math><mrow><mo>(</mo>
+      <msub><mi>k</mi><mi>R</mi></msub><mo>,</mo>
+      <msub><mi>k</mi><mi>G</mi></msub><mo>,</mo>
+      <msub><mi>k</mi><mi>B</mi></msub><mo>,</mo>
+      <msub><mi>k</mi><mi>A</mi></msub>
+    <mo>)</mo></mrow></math></inlineequation>,
+    where</para>
+
+    <informalequation>
+    <math>
+      <msub><mi>k</mi><mi>c</mi></msub>
+      <mo>=</mo>
+      <msup><mn>2</mn><msub><mi>m</mi><mi>c</mi></msub></msup>
+      <mo>-</mo>
+      <mn>1</mn>
+    </math>
+    </informalequation>
+
+    <para> and 
+    <inlineequation><math><mrow><mo>(</mo>
+      <msub><mi>m</mi><mi>R</mi></msub><mo>,</mo>
+      <msub><mi>m</mi><mi>G</mi></msub><mo>,</mo>
+      <msub><mi>m</mi><mi>B</mi></msub><mo>,</mo>
+      <msub><mi>m</mi><mi>A</mi></msub>
+    <mo>)</mo></mrow></math></inlineequation>
+    is the number of red, green, blue, and alpha bitplanes.</para>
+
+    <para>Source and destination scale factors are referred to as 
+    <inlineequation><math><mrow><mo>(</mo>
+      <msub><mi>s</mi><mi>R</mi></msub><mo>,</mo>
+      <msub><mi>s</mi><mi>G</mi></msub><mo>,</mo>
+      <msub><mi>s</mi><mi>B</mi></msub><mo>,</mo>
+      <msub><mi>s</mi><mi>A</mi></msub>
+    <mo>)</mo></mrow></math></inlineequation>
+    and 
+    <inlineequation><math><mrow><mo>(</mo>
+      <msub><mi>d</mi><mi>R</mi></msub><mo>,</mo>
+      <msub><mi>d</mi><mi>G</mi></msub><mo>,</mo>
+      <msub><mi>d</mi><mi>B</mi></msub><mo>,</mo>
+      <msub><mi>d</mi><mi>A</mi></msub>
+    <mo>)</mo></mrow></math></inlineequation>.
+
+    The scale factors described in the table, denoted 
+    <inlineequation><math><mrow><mo>(</mo>
+      <msub><mi>f</mi><mi>R</mi></msub><mo>,</mo>
+      <msub><mi>f</mi><mi>G</mi></msub><mo>,</mo>
+      <msub><mi>f</mi><mi>B</mi></msub><mo>,</mo>
+      <msub><mi>f</mi><mi>A</mi></msub>
+    <mo>)</mo></mrow></math></inlineequation>,
+    represent either source or destination factors. All scale
+    factors have range [0, 1].</para>
+
+    <informaltable pgwide='0' frame='none'>
+      <tgroup cols='2' align='center'>
+        <colspec align="left"/>
+        <colspec align="center"/>
+
+        <thead>
+          <row rowsep='1'>
+            <entry>Parameter</entry>
+            <entry>
+              <inlineequation><math><mrow><mo>(</mo>
+                <msub><mi>f</mi><mi>R</mi></msub><mo>,</mo>
+                <msub><mi>f</mi><mi>G</mi></msub><mo>,</mo>
+                <msub><mi>f</mi><mi>B</mi></msub><mo>,</mo>
+                <msub><mi>f</mi><mi>A</mi></msub>
+              <mo>)</mo></mrow></math></inlineequation>
+            </entry>
+          </row>
+        </thead>
+
+        <tbody>
+          <row>
+            <entry>
+              <constant>GL_ZERO</constant>
+            </entry>
+
+            <entry>
+              <inlineequation><math><mrow><mo>(</mo>
+                <mn>0</mn><mo>,</mo>
+                <mn>0</mn><mo>,</mo>
+                <mn>0</mn><mo>,</mo>
+                <mn>0</mn>
+              <mo>)</mo></mrow></math></inlineequation>
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              <constant>GL_ONE</constant>
+            </entry>
+
+            <entry>
+              <inlineequation><math><mrow><mo>(</mo>
+                <mn>1</mn><mo>,</mo>
+                <mn>1</mn><mo>,</mo>
+                <mn>1</mn><mo>,</mo>
+                <mn>1</mn>
+              <mo>)</mo></mrow></math></inlineequation>
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              <constant>GL_SRC_COLOR</constant>
+            </entry>
+
+            <entry>
+              <inlineequation><math><mrow><mo>(</mo>
+                <msub><mi>R</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>R</mi></msub><mo>,</mo>
+                <msub><mi>G</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>G</mi></msub><mo>,</mo>
+                <msub><mi>B</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>B</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub>
+              <mo>)</mo></mrow></math></inlineequation>
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              <constant>GL_ONE_MINUS_SRC_COLOR</constant>
+            </entry>
+
+            <entry>
+              <inlineequation><math><mrow>
+              <mo>(</mo>
+                <mn>1</mn><mo>,</mo>
+                <mn>1</mn><mo>,</mo>
+                <mn>1</mn><mo>,</mo>
+                <mn>1</mn>
+              <mo>)</mo>
+              <mo>-</mo>
+              <mo>(</mo>
+                <msub><mi>R</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>R</mi></msub><mo>,</mo>
+                <msub><mi>G</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>G</mi></msub><mo>,</mo>
+                <msub><mi>B</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>B</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub>
+              <mo>)</mo></mrow></math></inlineequation>
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              <constant>GL_DST_COLOR</constant>
+            </entry>
+
+            <entry>
+              <inlineequation><math><mrow><mo>(</mo>
+                <msub><mi>R</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>R</mi></msub><mo>,</mo>
+                <msub><mi>G</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>G</mi></msub><mo>,</mo>
+                <msub><mi>B</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>B</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub>
+              <mo>)</mo></mrow></math></inlineequation>
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              <constant>GL_ONE_MINUS_DST_COLOR</constant>
+            </entry>
+
+            <entry>
+              <inlineequation><math><mrow>
+              <mo>(</mo>
+                <mn>1</mn><mo>,</mo>
+                <mn>1</mn><mo>,</mo>
+                <mn>1</mn><mo>,</mo>
+                <mn>1</mn>
+              <mo>)</mo>
+              <mo>-</mo>
+              <mo>(</mo>
+                <msub><mi>R</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>R</mi></msub><mo>,</mo>
+                <msub><mi>G</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>G</mi></msub><mo>,</mo>
+                <msub><mi>B</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>B</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub>
+              <mo>)</mo></mrow></math></inlineequation>
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              <constant>GL_SRC_ALPHA</constant>
+            </entry>
+
+            <entry>
+              <inlineequation><math><mrow><mo>(</mo>
+                <msub><mi>A</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub>
+              <mo>)</mo></mrow></math></inlineequation>
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              <constant>GL_ONE_MINUS_SRC_ALPHA</constant>
+            </entry>
+
+            <entry>
+              <inlineequation><math><mrow>
+              <mo>(</mo>
+                <mn>1</mn><mo>,</mo>
+                <mn>1</mn><mo>,</mo>
+                <mn>1</mn><mo>,</mo>
+                <mn>1</mn>
+              <mo>)</mo>
+              <mo>-</mo>
+              <mo>(</mo>
+                <msub><mi>A</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>s</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub>
+              <mo>)</mo></mrow></math></inlineequation>
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              <constant>GL_DST_ALPHA</constant>
+            </entry>
+
+            <entry>
+              <inlineequation><math><mrow><mo>(</mo>
+                <msub><mi>A</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub>
+              <mo>)</mo></mrow></math></inlineequation>
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              <constant>GL_ONE_MINUS_DST_ALPHA</constant>
+            </entry>
+
+            <entry>
+              <inlineequation><math><mrow>
+              <mo>(</mo>
+                <mn>1</mn><mo>,</mo>
+                <mn>1</mn><mo>,</mo>
+                <mn>1</mn><mo>,</mo>
+                <mn>1</mn>
+              <mo>)</mo>
+              <mo>-</mo>
+              <mo>(</mo>
+                <msub><mi>A</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub><mo>,</mo>
+                <msub><mi>A</mi><mi>d</mi></msub><mo>/</mo><msub><mi>k</mi><mi>A</mi></msub>
+              <mo>)</mo></mrow></math></inlineequation>
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              <constant>GL_SRC_ALPHA_SATURATE</constant>
+            </entry>
+
+            <entry>
+              <inlineequation><math><mrow><mo>(</mo>
+                <mi>i</mi><mo>,</mo>
+                <mi>i</mi><mo>,</mo>
+                <mi>i</mi><mo>,</mo>
+                <mn>1</mn>
+              <mo>)</mo></mrow></math></inlineequation>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <para>In the table,</para>
+
+    <informalequation>
+      <math><mrow>
+        <mi>i</mi><mo>=</mo><mo>min</mo><mo>(</mo>
+          <msub><mi>A</mi><mi>s</mi></msub><mo>,</mo>
+          <msub><mi>k</mi><mi>A</mi></msub><mo>-</mo><msub><mi>A</mi><mi>d</mi></msub>
+          <mo>)</mo>
+          <mo>/</mo>
+          <msub><mi>k</mi><mi>A</mi></msub>
+      </mrow></math>
+    </informalequation>
+
+    <para>To determine the blended values of a pixel, the system
+    uses the following equations:</para>
+
+    <informalequation><math><mtable>
+      <mtr><mtd>
+        <msub><mi>R</mi><mi>d</mi></msub>
+        <mgroupalign/>
+        <mo>=</mo>
+        <mgroupalign/>
+        <mo>min</mo><mo>(</mo>
+        <msub><mi>k</mi><mi>R</mi></msub><mo>,</mo>
+        <msub><mi>R</mi><mi>s</mi></msub>
+        <msub><mi>s</mi><mi>R</mi></msub><mo>+</mo>
+        <msub><mi>R</mi><mi>d</mi></msub>
+        <msub><mi>d</mi><mi>R</mi></msub>
+        <mo>)</mo>
+      </mtd></mtr>
+      <mtr><mtd>
+        <msub><mi>G</mi><mi>d</mi></msub>
+        <mgroupalign/>
+        <mo>=</mo>
+        <mgroupalign/>
+        <mo>min</mo><mo>(</mo>
+        <msub><mi>k</mi><mi>G</mi></msub><mo>,</mo>
+        <msub><mi>G</mi><mi>s</mi></msub>
+        <msub><mi>s</mi><mi>G</mi></msub><mo>+</mo>
+        <msub><mi>G</mi><mi>d</mi></msub>
+        <msub><mi>d</mi><mi>G</mi></msub>
+        <mo>)</mo>
+      </mtd></mtr>
+      <mtr><mtd>
+        <msub><mi>B</mi><mi>d</mi></msub>
+        <mgroupalign/>
+        <mo>=</mo>
+        <mgroupalign/>
+        <mo>min</mo><mo>(</mo>
+        <msub><mi>k</mi><mi>B</mi></msub><mo>,</mo>
+        <msub><mi>B</mi><mi>s</mi></msub>
+        <msub><mi>s</mi><mi>B</mi></msub><mo>+</mo>
+        <msub><mi>B</mi><mi>d</mi></msub>
+        <msub><mi>d</mi><mi>B</mi></msub>
+        <mo>)</mo>
+      </mtd></mtr>
+      <mtr><mtd>
+        <msub><mi>A</mi><mi>d</mi></msub>
+        <mgroupalign/>
+        <mo>=</mo>
+        <mgroupalign/>
+        <mo>min</mo><mo>(</mo>
+        <msub><mi>k</mi><mi>A</mi></msub><mo>,</mo>
+        <msub><mi>A</mi><mi>s</mi></msub>
+        <msub><mi>s</mi><mi>A</mi></msub><mo>+</mo>
+        <msub><mi>A</mi><mi>d</mi></msub>
+        <msub><mi>d</mi><mi>A</mi></msub>
+        <mo>)</mo>
+      </mtd></mtr>
+    </mtable></math></informalequation>
+
+    <para>Despite the apparent precision of the above equations,
+    blending arithmetic is not exactly specified, because blending
+    operates with imprecise integer color values. However, a blend
+    factor that should be equal to 1 is guaranteed not to modify
+    its multiplicand, and a blend factor equal to 0 reduces its
+    multiplicand to 0. For example, when <parameter>sfactor</parameter>
+    is <constant>GL_SRC_ALPHA</constant>, 
+    <parameter>dfactor</parameter> is 
+    <constant>GL_ONE_MINUS_SRC_ALPHA</constant>, and 
+    <inlineequation><math><msub><mi>A</mi><mi>s</mi></msub></math></inlineequation>
+    is equal to 
+    <inlineequation><math><msub><mi>k</mi><mi>A</mi></msub></math></inlineequation>,
+    the equations reduce to simple replacement:</para>
+
+    <informalequation><math><mtable>
+      <mtr><mtd>
+        <msub><mi>R</mi><mi>d</mi></msub>
+        <mgroupalign/>
+        <mo>=</mo>
+        <mgroupalign/>
+        <msub><mi>R</mi><mi>s</mi></msub>
+      </mtd></mtr>
+      <mtr><mtd>
+        <msub><mi>G</mi><mi>d</mi></msub>
+        <mgroupalign/>
+        <mo>=</mo>
+        <mgroupalign/>
+        <msub><mi>G</mi><mi>s</mi></msub>
+      </mtd></mtr>
+      <mtr><mtd>
+        <msub><mi>B</mi><mi>d</mi></msub>
+        <mgroupalign/>
+        <mo>=</mo>
+        <mgroupalign/>
+        <msub><mi>B</mi><mi>s</mi></msub>
+      </mtd></mtr>
+      <mtr><mtd>
+        <msub><mi>A</mi><mi>d</mi></msub>
+        <mgroupalign/>
+        <mo>=</mo>
+        <mgroupalign/>
+        <msub><mi>A</mi><mi>s</mi></msub>
+      </mtd></mtr>
+    </mtable></math></informalequation>
+
+    <para>
+    <function>glBlendFunc</function> operates on all pixel write operations,
+    including the scan conversion of points, lines, and polygons.
+    <function>glBlendFunc</function> does not affect
+    <citerefentry><refentrytitle>glClear</refentrytitle></citerefentry>.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Examples</title>
+
+    <para>Transparency is best implemented using
+    <function>glBlendFunc</function>(<constant>GL_SRC_ALPHA</constant>, 
+    <constant>GL_ONE_MINUS_SRC_ALPHA</constant>)
+    with primitives sorted from farthest to nearest. Note that
+    this transparency calculation does not require the presence of
+    alpha bitplanes in the color buffer.</para>
+
+    <para><function>glBlendFunc</function>(<constant>GL_SRC_ALPHA</constant>, 
+    <constant>GL_ONE_MINUS_SRC_ALPHA</constant>)
+    is also useful for rendering antialiased points and lines.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Notes</title>
+
+    <para>Incoming (source) alpha is correctly thought of as a
+    material opacity, ranging from 1.0
+    (<inlineequation><math><msub><mi>k</mi><mi>A</mi></msub></math></inlineequation>),
+    representing complete opacity, to 0.0 (0), representing
+    complete transparency.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if either 
+    <parameter>sfactor</parameter> or <parameter>dfactor</parameter>
+    is not an accepted value.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+      <citerefentry><refentrytitle>glAlphaFunc</refentrytitle></citerefentry>, 
+      <citerefentry><refentrytitle>glClear</refentrytitle></citerefentry>, 
+      <citerefentry><refentrytitle>glDepthFunc</refentrytitle></citerefentry>, 
+      <citerefentry><refentrytitle>glEnable</refentrytitle></citerefentry>, 
+      <citerefentry><refentrytitle>glLogicOp</refentrytitle></citerefentry>, 
+      <citerefentry><refentrytitle>glStencilFunc</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

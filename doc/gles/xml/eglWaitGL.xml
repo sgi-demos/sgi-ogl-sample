@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="eglWaitGL">
+
+  <refmeta>
+    <refentrytitle>eglWaitGL</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>eglWaitGL</refname>
+    <refpurpose>
+      complete GL execution prior to subsequent native rendering calls
+    </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype> 
+        <funcdef>EGLBoolean <function>eglWaitGL</function></funcdef>
+        <void/>
+      </funcprototype> 
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>
+      GL rendering calls made prior to
+      <function>eglWaitGL</function>
+      are guaranteed to be executed
+      before native rendering calls made after
+      <function>eglWaitGL</function>.
+      The same result can be achieved using
+      <citerefentry><refentrytitle>glFinish</refentrytitle></citerefentry>.
+    </para>
+
+    <para>
+      <function>eglWaitGL</function> is ignored if there is no current
+      EGL rendering context.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para>
+      <constant>EGL_FALSE</constant>
+      is returned if
+      <function>eglWaitGL</function>
+      fails,
+      <constant>EGL_TRUE</constant>
+      otherwise.
+    </para>
+
+    <para>
+      <constant>EGL_BAD_NATIVE_SURFACE</constant>
+      is generated if the surface associated with the current context has a
+      native window or pixmap, and that window or pixmap is no longer valid.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+      <citerefentry><refentrytitle>glFinish</refentrytitle></citerefentry>,
+      <citerefentry><refentrytitle>glFlush</refentrytitle></citerefentry>,
+      <citerefentry><refentrytitle>eglWaitNative</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+
+</refentry>

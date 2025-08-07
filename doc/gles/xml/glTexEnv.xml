@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glTexEnv">
+  <refmeta>
+    <refentrytitle>glTexEnv</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refdescriptor>glTexEnv</refdescriptor>
+    <refname>glTexEnvf</refname>
+    <refname>glTexEnvx</refname>
+    <refname>glTexEnvfv</refname>
+    <refname>glTexEnvxv</refname>
+    <refpurpose>set texture environment parameters</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glTexEnvf</function></funcdef>
+        <paramdef>GLenum <parameter>pname</parameter></paramdef>
+        <paramdef>GLfloat <parameter>param</parameter></paramdef>
+      </funcprototype>
+      <funcprototype>
+        <funcdef>void <function>glTexEnvx</function></funcdef>
+        <paramdef>GLenum <parameter>pname</parameter></paramdef>
+        <paramdef>GLfixed <parameter>param</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>target</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies a texture environment. Must be 
+          <constant>GL_TEXTURE_ENV</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>pname</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the symbolic name of a single-valued
+          texture environment parameter. Must be 
+          <constant>GL_TEXTURE_ENV_MODE</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>param</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies a single symbolic constant, one of 
+          <constant>GL_MODULATE</constant>, 
+          <constant>GL_DECAL</constant>, 
+          <constant>GL_BLEND</constant>, or 
+          <constant>GL_REPLACE</constant>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glTexEnvfv</function></funcdef>
+        <paramdef>GLenum <parameter>pname</parameter></paramdef>
+        <paramdef>const GLfloat * <parameter>params</parameter></paramdef>
+      </funcprototype>
+      <funcprototype>
+        <funcdef>void <function>glTexEnvxv</function></funcdef>
+        <paramdef>GLenum <parameter>pname</parameter></paramdef>
+        <paramdef>const GLfixed * <parameter>params</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>target</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies a texture environment. Must be 
+          <constant>GL_TEXTURE_ENV</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>pname</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the symbolic name of a texture
+          environment parameter. Accepted values are 
+          <constant>GL_TEXTURE_ENV_MODE</constant> and 
+          <constant>GL_TEXTURE_ENV_COLOR</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>params</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies a pointer to a parameter array that
+          contains either a single symbolic constant or an RGBA
+          color.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>A texture environment specifies how texture values are
+    interpreted when a fragment is textured. 
+    <parameter>target</parameter> must be 
+    <constant>GL_TEXTURE_ENV</constant>. 
+    <parameter>pname</parameter> can be either 
+    <constant>GL_TEXTURE_ENV_MODE</constant> or 
+    <constant>GL_TEXTURE_ENV_COLOR</constant>.</para>
+
+    <para>If <parameter>pname</parameter> is 
+    <constant>GL_TEXTURE_ENV_MODE</constant>, then 
+    <parameter>params</parameter>
+    is (or points to) the symbolic name of a texture function. Four
+    texture functions may be specified: 
+    <constant>GL_MODULATE</constant>, 
+    <constant>GL_DECAL</constant>, 
+    <constant>GL_BLEND</constant>, and 
+    <constant>GL_REPLACE</constant>.</para>
+
+    <para>A texture function acts on the fragment to be textured
+    using the texture image value that applies to the fragment (see
+    <citerefentry><refentrytitle>glTexParameter</refentrytitle></citerefentry>)
+    and produces an RGBA color for that fragment. The following
+    table shows how the RGBA color is produced for each of the
+    three texture functions that can be chosen. 
+    <replaceable>C</replaceable> is a triple of color values (RGB) and 
+    <replaceable>A</replaceable> is the associated alpha value.
+    RGBA values extracted from a texture image are in the range [0, 1].
+    The subscript <replaceable>f</replaceable> refers to the incoming fragment,
+    the subscript <replaceable>t</replaceable> to the texture image,
+    the subscript <replaceable>c</replaceable> to the texture environment color,
+    and subscript <replaceable>v</replaceable> indicates a value produced by
+    the texture function.</para>
+
+    <para>A texture image can have up to four components per
+    texture element (see 
+    <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry>,
+    and 
+    <citerefentry><refentrytitle>glCopyTexImage2D</refentrytitle></citerefentry>).
+    In a one-component image, <inlineequation><math>
+      <msub><mi>L</mi><mi>t</mi></msub>
+    </math></inlineequation> indicates that single component.
+    A two-component image uses <inlineequation><math>
+      <msub><mi>L</mi><mi>t</mi></msub>
+    </math></inlineequation> and
+    <inlineequation><math>
+      <msub><mi>A</mi><mi>t</mi></msub>
+    </math></inlineequation>.
+    A three-component image has only a color value, 
+    <inlineequation><math>
+      <msub><mi>C</mi><mi>t</mi></msub>
+    </math></inlineequation>.
+    A four-component image has both a color value 
+    <inlineequation><math>
+      <msub><mi>C</mi><mi>t</mi></msub>
+    </math></inlineequation>
+    and an alpha value 
+    <inlineequation><math>
+      <msub><mi>A</mi><mi>t</mi></msub>
+    </math></inlineequation>.</para>
+
+    <informaltable frame="none">
+      <tgroup cols="5" align="center">
+        <colspec colname="c1" align="left"/>
+        <colspec colname="c2" align="center"/>
+        <colspec colname="c3" align="center"/>
+        <colspec colname="c4" align="center"/>
+        <colspec colname="c5" align="center"/>
+        <spanspec spanname="texture functions" namest="c2" nameend="c3" align="center"/>
+        <thead>
+          <row>
+            <entry>Base internal</entry>
+            <entry spanname="texture functions">Texture functions</entry>
+          </row>
+
+          <row>
+            <entry>format</entry>
+            <entry><constant>GL_MODULATE</constant></entry>
+            <entry><constant>GL_DECAL</constant></entry>
+          </row>
+        </thead>
+
+        <tbody>
+          <row rowsep="1">
+            <entry><constant>GL_ALPHA</constant></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>C</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>undefined</entry>
+          </row>
+          <row>
+            <entry></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>t</mi></msub>
+                <msub><mi>A</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry></entry>
+          </row>
+
+          <row rowsep="1">
+            <entry><constant>GL_LUMINANCE</constant></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>L</mi><mi>t</mi></msub>
+                <msub><mi>C</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>undefined</entry>
+          </row>
+          <row>
+            <entry></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry></entry>
+          </row>
+
+          <row rowsep="1">
+            <entry><constant>GL_LUMINANCE_ALPHA</constant></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>L</mi><mi>t</mi></msub>
+                <msub><mi>C</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>undefined</entry>
+          </row>
+          <row>
+            <entry></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>t</mi></msub>
+                <msub><mi>A</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry></entry>
+          </row>
+
+          <row rowsep="1">
+            <entry><constant>GL_RGB</constant></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>C</mi><mi>t</mi></msub>
+                <msub><mi>C</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>C</mi><mi>t</mi></msub>
+              </math></inlineequation>
+            </entry>
+          </row>
+          <row>
+            <entry></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+          </row>
+
+          <row rowsep="1">
+            <entry><constant>GL_RGBA</constant></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>C</mi><mi>t</mi></msub>
+                <msub><mi>C</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <mfenced><mrow>
+                  <mn>1</mn>
+                  <mo>-</mo>
+                  <msub><mi>A</mi><mi>t</mi></msub>
+                </mrow></mfenced>
+                <msub><mi>C</mi><mi>f</mi></msub>
+                <mo>+</mo>
+                <msub><mi>A</mi><mi>t</mi></msub>
+                <msub><mi>C</mi><mi>t</mi></msub>
+              </math></inlineequation>
+            </entry>
+          </row>
+          <row>
+            <entry></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>t</mi></msub>
+                <msub><mi>A</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- second table -->
+
+    <informaltable frame="none">
+      <tgroup cols="3" align="center">
+        <colspec colname="c1" align="left"/>
+        <colspec colname="c2" align="center"/>
+        <colspec colname="c3" align="center"/>
+        <spanspec spanname="texture functions" namest="c2" nameend="c3" align="center"/>
+        <thead>
+          <row>
+            <entry>Base internal</entry>
+            <entry spanname="texture functions">Texture functions</entry>
+          </row>
+
+          <row>
+            <entry>format</entry>
+            <entry><constant>GL_BLEND</constant></entry>
+            <entry><constant>GL_REPLACE</constant></entry>
+          </row>
+        </thead>
+
+        <tbody>
+          <row rowsep="1">
+            <entry><constant>GL_ALPHA</constant></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>C</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>C</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+          </row>
+          <row>
+            <entry></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>t</mi></msub>
+                <msub><mi>A</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>t</mi></msub>
+              </math></inlineequation>
+            </entry>
+          </row>
+
+          <row rowsep="1">
+            <entry><constant>GL_LUMINANCE</constant></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <mfenced><mrow>
+                  <mn>1</mn>
+                  <mo>-</mo>
+                  <msub><mi>L</mi><mi>t</mi></msub>
+                </mrow></mfenced>
+                <msub><mi>C</mi><mi>f</mi></msub>
+                <mo>+</mo>
+                <msub><mi>L</mi><mi>t</mi></msub>
+                <msub><mi>C</mi><mi>c</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>L</mi><mi>t</mi></msub>
+              </math></inlineequation>
+            </entry>
+          </row>
+          <row>
+            <entry></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+          </row>
+
+          <row rowsep="1">
+            <entry><constant>GL_LUMINANCE_ALPHA</constant></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <mfenced><mrow>
+                  <mn>1</mn>
+                  <mo>-</mo>
+                  <msub><mi>L</mi><mi>t</mi></msub>
+                </mrow></mfenced>
+                <msub><mi>C</mi><mi>f</mi></msub>
+                <mo>+</mo>
+                <msub><mi>L</mi><mi>t</mi></msub>
+                <msub><mi>C</mi><mi>c</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>L</mi><mi>t</mi></msub>
+              </math></inlineequation>
+            </entry>
+          </row>
+          <row>
+            <entry></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>t</mi></msub>
+                <msub><mi>A</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>t</mi></msub>
+              </math></inlineequation>
+            </entry>
+          </row>
+
+          <row rowsep="1">
+            <entry><constant>GL_RGB</constant></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <mfenced><mrow>
+                  <mn>1</mn>
+                  <mo>-</mo>
+                  <msub><mi>C</mi><mi>t</mi></msub>
+                </mrow></mfenced>
+                <msub><mi>C</mi><mi>f</mi></msub>
+                <mo>+</mo>
+                <msub><mi>C</mi><mi>t</mi></msub>
+                <msub><mi>C</mi><mi>c</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>C</mi><mi>t</mi></msub>
+              </math></inlineequation>
+            </entry>
+          </row>
+          <row>
+            <entry></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+          </row>
+
+          <row rowsep="1">
+            <entry><constant>GL_RGBA</constant></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <mfenced><mrow>
+                  <mn>1</mn>
+                  <mo>-</mo>
+                  <msub><mi>C</mi><mi>t</mi></msub>
+                </mrow></mfenced>
+                <msub><mi>C</mi><mi>f</mi></msub>
+                <mo>+</mo>
+                <msub><mi>C</mi><mi>t</mi></msub>
+                <msub><mi>C</mi><mi>c</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>C</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>C</mi><mi>t</mi></msub>
+              </math></inlineequation>
+            </entry>
+          </row>
+          <row>
+            <entry></entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>t</mi></msub>
+                <msub><mi>A</mi><mi>f</mi></msub>
+              </math></inlineequation>
+            </entry>
+            <entry>
+              <inlineequation><math>
+                <msub><mi>A</mi><mi>v</mi></msub>
+                <mo>=</mo>
+                <msub><mi>A</mi><mi>t</mi></msub>
+              </math></inlineequation>
+            </entry>
+          </row>
+
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <para>If <parameter>pname</parameter> is 
+    <constant>GL_TEXTURE_ENV_COLOR</constant>, 
+    <parameter>params</parameter> 
+    is a pointer to an array that holds an RGBA color consisting of
+    four values. The values are clamped to the range [0, 1] when
+    they are specified. 
+    <inlineequation><math>
+      <msub><mi>C</mi><mi>c</mi></msub>
+    </math></inlineequation>
+    takes these four values.</para>
+
+    <para>
+    The initial value of <constant>GL_TEXTURE_ENV_MODE</constant> is
+    <constant>GL_MODULATE</constant>. The initial value of
+    <constant>GL_TEXTURE_ENV_COLOR</constant> is (0, 0, 0, 0).</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated when 
+    <parameter>target</parameter> or 
+    <parameter>pname</parameter> 
+    is not one of the accepted values, or when 
+    <parameter>params</parameter> 
+    should have a defined constant value (based on the value of 
+    <parameter>pname</parameter>) and does not.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glActiveTexture</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCompressedTexImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCompressedTexSubImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCopyTexImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCopyTexSubImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexParameter</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexSubImage2D</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="eglCreateWindowSurface">
+
+  <refmeta>
+    <refentrytitle>eglCreateWindowSurface</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>eglCreateWindowSurface</refname>
+    <refpurpose>
+      create a new <acronym>EGL</acronym> window surface
+    </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>EGLSurface <function>eglCreateWindowSurface</function></funcdef>
+        <paramdef>EGLDisplay <parameter>display</parameter></paramdef>
+        <paramdef>EGLConfig <parameter>config</parameter></paramdef>
+        <paramdef>NativeWindowType <parameter>native_window</parameter></paramdef>
+        <paramdef>EGLint const * <parameter>attrib_list</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter>display</parameter></term>
+        <listitem><para>Specifies the EGL display connection.</para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>config</parameter></term>
+        <listitem>
+          <para>Specifies the EGL frame buffer configuration that defines the
+          frame buffer resource available to the surface.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>native_window</parameter></term>
+        <listitem><para>Specifies the native window.</para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>attrib_list</parameter></term>
+        <listitem><para>
+          Specifies window surface attributes.
+          Must be <constant>NULL</constant> or empty
+          (first attribute is <constant>EGL_NONE</constant>).
+        </para></listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+    
+  <refsect1>
+    <title>Description</title>
+
+    <para>
+      <function>eglCreateWindowSurface</function> creates an EGL
+      window surface and returns its handle.
+      If <function>eglCreateWindowSurface</function> fails to create a
+      window surface, <constant>EGL_NO_SURFACE</constant> is
+      returned.
+    </para>
+
+    <para>
+      Any EGL rendering context that was created with respect to 
+      <parameter>config</parameter> can be used to render into the surface.
+      Use <citerefentry><refentrytitle>eglMakeCurrent</refentrytitle></citerefentry>
+      to attach an EGL rendering context to the surface.
+    </para>
+
+    <para>
+      Use
+      <citerefentry><refentrytitle>eglQuerySurface</refentrytitle></citerefentry>
+      to retrieve the ID of <parameter>config</parameter>.
+    </para>
+
+    <para>
+      Use <citerefentry><refentrytitle>eglDestroySurface</refentrytitle></citerefentry>
+      to destroy the surface.
+    </para>
+  </refsect1>
+    
+  <refsect1>
+    <title>Errors</title>
+
+    <para>
+      <constant>EGL_NO_SURFACE</constant> is returned if creation of
+      the context fails.
+    </para>
+
+    <para>
+      <constant>EGL_BAD_DISPLAY</constant> is generated if
+      <parameter>display</parameter> is not an EGL display connection.
+    </para>
+    
+    <para>
+      <constant>EGL_NOT_INITIALIZED</constant> is generated if
+      <parameter>display</parameter> has not been initialized.
+    </para>
+
+    <para>
+      <constant>EGL_BAD_CONFIG</constant> is generated if
+      <parameter>config</parameter> is not an EGL frame buffer configuration.
+    </para>
+
+    <para>
+      <constant>EGL_BAD_NATIVE_WINDOW</constant> may be generated if
+      <parameter>native_window</parameter> is not a valid native window.
+    </para>
+
+    <para>
+      <constant>EGL_BAD_ATTRIBUTE</constant> is generated if
+      <parameter>attrib_list</parameter> contains an invalid window attribute
+      or if an attribute value is not recognized or is out of range.
+    </para>
+    
+    <para>
+      <constant>EGL_BAD_ALLOC</constant> is generated if there are not
+      enough resources to allocate the new surface.
+    </para>
+    
+    <para>
+      <constant>EGL_BAD_MATCH</constant> is generated if the attributes of
+      <parameter>native_window</parameter> do not correspond to
+      <parameter>config</parameter> or if
+      <parameter>config</parameter> does not support rendering to windows
+      (the <constant>EGL_SURFACE_TYPE</constant> attribute does not contain
+      <constant>EGL_WINDOW_BIT</constant>).
+    </para>
+  </refsect1>
+    
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+      <citerefentry><refentrytitle>eglDestroySurface</refentrytitle></citerefentry>,
+      <citerefentry><refentrytitle>eglChooseConfig</refentrytitle></citerefentry>,
+      <citerefentry><refentrytitle>eglGetConfigs</refentrytitle></citerefentry>,      <citerefentry><refentrytitle>eglMakeCurrent</refentrytitle></citerefentry>,
+      <citerefentry><refentrytitle>eglQuerySurface</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+
+</refentry>

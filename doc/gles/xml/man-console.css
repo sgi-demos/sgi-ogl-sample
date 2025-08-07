@@ -1,0 +1,112 @@
+/* man-console.css */
+
+/* block */
+
+body {
+    font-family: "Courier New", Courier, monospace;
+    font-size: medium;
+    background-color: black;
+    color: white;
+    margin: 0px;
+}
+
+h1 {
+    font-family: "Courier New", Courier, monospace;
+    font-size: medium;
+    text-align: center;
+    margin-top: 4ex;
+    margin-bottom: 4ex;
+}
+
+div.left {
+    float: left;
+    width: 45%;
+}
+
+div.right {
+    float: right;
+    width: 45%;
+}
+
+ul {
+    margin-left: 3em;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+h2, h3 {
+    font-size: medium;
+    font-weight: normal;
+    margin-bottom: 0px;
+    color: yellow;
+}
+
+h2 {
+    text-transform: uppercase;
+}
+
+th {
+    font-weight: normal;
+}
+
+p, pre, dl {
+    margin-left: 3em;
+}
+
+dd p, pre, dl {
+    margin-top: 0px;
+}
+
+pre {
+    font-family: "Courier New", Courier, monospace;
+    font-size: medium;
+}
+
+p {
+    margin-top: 0px;
+}
+
+p.center {
+    text-align: center;
+}
+
+/* inline */
+
+a {
+    text-decoration: none;
+}
+
+em, var, dfn {
+    font-style: normal;
+    text-decoration: underline;
+    color: white;
+}
+
+code, strong {
+    font-family: "Courier New", Courier, monospace;
+    font-size: medium;
+    font-weight: normal;
+    color: yellow;
+}
+
+div.footer {
+    margin-top: 3ex;
+    padding-top: 1.5ex;
+    border-style: solid;
+    border-width: 1px 0px 0px 0px;
+    clear: both;
+}
+
+div.footer p {
+    font-size: smaller;
+    margin-top: 0ex;
+    margin-bottom: 0ex;
+}
+
+/* discouraged */
+
+b, i {
+   color: red;
+}

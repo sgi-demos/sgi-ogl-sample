@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glLoadMatrix">
+  <refmeta>
+    <refentrytitle>glLoadMatrix</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refdescriptor>glLoadMatrix</refdescriptor>
+    <refname>glLoadMatrixf</refname>
+    <refname>glLoadMatrixx</refname>
+    <refpurpose>replace the current matrix with the specified
+    matrix</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glLoadMatrixf</function></funcdef>
+        <paramdef>const GLfloat * <parameter>m</parameter></paramdef>
+      </funcprototype>
+      <funcprototype>
+        <funcdef>void <function>glLoadMatrixx</function></funcdef>
+        <paramdef>const GLfixed * <parameter>m</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>m</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies a pointer to 16 consecutive values, which
+          are used as the elements of a 
+          <inlineequation><math>
+            <mn>4</mn><mo>x</mo><mn>4</mn>
+          </math></inlineequation>
+          column-major matrix.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para><function>glLoadMatrix</function> 
+    replaces the current matrix with the one whose elements are
+    specified by <parameter>m</parameter>.
+    The current matrix is the projection matrix, modelview
+    matrix, or texture matrix, depending on the current matrix mode (see 
+    <citerefentry><refentrytitle>glMatrixMode</refentrytitle></citerefentry>).</para>
+
+    <para>The current matrix, M, defines a transformation of
+    coordinates. For instance, assume M refers to the modelview
+    matrix. If 
+    <inlineequation><math>
+      <mi>v</mi><mo>=</mo>
+      <mfenced>
+        <mrow><mi>v</mi><mo>[</mo><mn>0</mn><mo>]</mo></mrow>
+        <mrow><mi>v</mi><mo>[</mo><mn>1</mn><mo>]</mo></mrow>
+        <mrow><mi>v</mi><mo>[</mo><mn>2</mn><mo>]</mo></mrow>
+        <mrow><mi>v</mi><mo>[</mo><mn>3</mn><mo>]</mo></mrow>
+      </mfenced>
+    </math></inlineequation>
+    is the set of object coordinates of a vertex, and 
+    <parameter>m</parameter> points to an array of 16
+    fixed-point or single-precision floating-point values 
+    <inlineequation><math>
+      <mrow>
+        <mi>m</mi><mo>[</mo><mn>0</mn><mo>]</mo>,
+        <mi>m</mi><mo>[</mo><mn>1</mn><mo>]</mo>,
+        <mo>...</mo>
+        <mi>m</mi><mo>[</mo><mn>15</mn><mo>]</mo>
+      </mrow>
+    </math></inlineequation>,
+
+    then the modelview transformation 
+    <inlineequation><math>
+      <mo>M</mo><mfenced><mi>v</mi></mfenced>
+    </math></inlineequation>
+    does the following:</para>
+
+    <informalequation><math><mrow>
+      <mo>M</mo><mfenced><mi>v</mi></mfenced><mo>=</mo>
+      <mo>(</mo>
+      <mtable class="matrix">
+        <mtr>
+          <mtd><mi>m</mi><mo>[</mo><mn>0</mn><mo>]</mo></mtd>
+          <mtd><mi>m</mi><mo>[</mo><mn>4</mn><mo>]</mo></mtd>
+          <mtd><mi>m</mi><mo>[</mo><mn>8</mn><mo>]</mo></mtd>
+          <mtd><mi>m</mi><mo>[</mo><mn>12</mn><mo>]</mo></mtd>
+        </mtr>
+        <mtr>
+          <mtd><mi>m</mi><mo>[</mo><mn>1</mn><mo>]</mo></mtd>
+          <mtd><mi>m</mi><mo>[</mo><mn>5</mn><mo>]</mo></mtd>
+          <mtd><mi>m</mi><mo>[</mo><mn>9</mn><mo>]</mo></mtd>
+          <mtd><mi>m</mi><mo>[</mo><mn>13</mn><mo>]</mo></mtd>
+        </mtr>
+        <mtr>
+          <mtd><mi>m</mi><mo>[</mo><mn>2</mn><mo>]</mo></mtd>
+          <mtd><mi>m</mi><mo>[</mo><mn>6</mn><mo>]</mo></mtd>
+          <mtd><mi>m</mi><mo>[</mo><mn>10</mn><mo>]</mo></mtd>
+          <mtd><mi>m</mi><mo>[</mo><mn>14</mn><mo>]</mo></mtd>
+        </mtr>
+        <mtr>
+          <mtd><mi>m</mi><mo>[</mo><mn>3</mn><mo>]</mo></mtd>
+          <mtd><mi>m</mi><mo>[</mo><mn>7</mn><mo>]</mo></mtd>
+          <mtd><mi>m</mi><mo>[</mo><mn>11</mn><mo>]</mo></mtd>
+          <mtd><mi>m</mi><mo>[</mo><mn>15</mn><mo>]</mo></mtd>
+        </mtr>
+      </mtable>
+      <mo>)</mo>
+      <mo>x</mo>
+      <mo>(</mo>
+      <mtable class="vector">
+        <mtr><mtd><mi>v</mi><mo>[</mo><mn>0</mn><mo>]</mo></mtd></mtr>
+        <mtr><mtd><mi>v</mi><mo>[</mo><mn>1</mn><mo>]</mo></mtd></mtr>
+        <mtr><mtd><mi>v</mi><mo>[</mo><mn>2</mn><mo>]</mo></mtd></mtr>
+        <mtr><mtd><mi>v</mi><mo>[</mo><mn>3</mn><mo>]</mo></mtd></mtr>
+      </mtable>
+      <mo>)</mo>
+    </mrow></math></informalequation>
+
+    <para>Where
+    ``<inlineequation><math><mo>x</mo></math></inlineequation>''
+    denotes matrix multiplication.</para>
+
+    <para>Projection and texture transformations are similarly
+    defined.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Notes</title>
+
+    <para>While the elements of the matrix may be specified with
+    single or double precision, the GL implementation may store or
+    operate on these values in less than single precision.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glLoadIdentity</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glMatrixMode</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glMultMatrix</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glPushMatrix</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

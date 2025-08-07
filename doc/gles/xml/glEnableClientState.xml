@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glEnableClientState">
+  <refmeta>
+    <refentrytitle>glEnableClientState</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refdescriptor>glEnableClientState</refdescriptor>
+    <refname>glEnableClientState</refname>
+    <refname>glDisableClientState</refname>
+    <refpurpose>enable or disable client-side capability</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glEnableClientState</function></funcdef>
+        <paramdef>GLenum <parameter>array</parameter></paramdef>
+      </funcprototype>
+      <funcprototype>
+        <funcdef>void <function>glDisableClientState</function></funcdef>
+        <paramdef>GLenum <parameter>array</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>array</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the capability to enable or disable.
+          Symbolic constants 
+          <constant>GL_COLOR_ARRAY</constant>, 
+          <constant>GL_NORMAL_ARRAY</constant>, 
+          <constant>GL_TEXTURE_COORD_ARRAY</constant>, and 
+          <constant>GL_VERTEX_ARRAY</constant> are accepted.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>
+    <function>glEnableClientState</function> and 
+    <function>glDisableClientState</function>
+    enable or disable individual client-side capabilities. By
+    default, all client-side capabilities are disabled. Both 
+    <function>glEnableClientState</function> and 
+    <function>glDisableClientState</function>
+    take a single argument, <parameter>array</parameter>,
+    which can assume one of the following values:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <constant>GL_COLOR_ARRAY</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, the color array is enabled for writing
+          and used during rendering when 
+          <citerefentry><refentrytitle>glDrawArrays</refentrytitle></citerefentry>, or 
+          <citerefentry><refentrytitle>glDrawElements</refentrytitle></citerefentry> is called. See 
+          <citerefentry><refentrytitle>glColorPointer</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_NORMAL_ARRAY</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, the normal array is enabled for writing
+          and used during rendering when 
+          <citerefentry><refentrytitle>glDrawArrays</refentrytitle></citerefentry>, or 
+          <citerefentry><refentrytitle>glDrawElements</refentrytitle></citerefentry> is called. See 
+          <citerefentry><refentrytitle>glNormalPointer</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_TEXTURE_COORD_ARRAY</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, the texture coordinate array is enabled
+          for writing and used during rendering when 
+          <citerefentry><refentrytitle>glDrawArrays</refentrytitle></citerefentry>, or 
+          <citerefentry><refentrytitle>glDrawElements</refentrytitle></citerefentry> is called. See 
+          <citerefentry><refentrytitle>glTexCoordPointer</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_VERTEX_ARRAY</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, the vertex array is enabled for writing
+          and used during rendering when 
+          <citerefentry><refentrytitle>glDrawArrays</refentrytitle></citerefentry>, or 
+          <citerefentry><refentrytitle>glDrawElements</refentrytitle></citerefentry> is called. See 
+          <citerefentry><refentrytitle>glVertexPointer</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Notes</title>
+
+    <para>Enabling and disabling 
+    <constant>GL_TEXTURE_COORD_ARRAY</constant>
+    affects the active client texture unit. The active client
+    texture unit is controlled with 
+    <citerefentry><refentrytitle>glClientActiveTexture</refentrytitle></citerefentry>.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>array</parameter> is not an accepted value.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glClientActiveTexture</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glColorPointer</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glDrawArrays</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glDrawElements</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glEnable</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glNormalPointer</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexCoordPointer</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glVertexPointer</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

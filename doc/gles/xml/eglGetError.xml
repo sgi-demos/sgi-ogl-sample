@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="eglGetError">
+
+  <refmeta>
+    <refentrytitle>eglGetError</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>eglGetError</refname>
+    <refpurpose>
+      return error information
+    </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>EGLint <function>eglGetError</function></funcdef>
+        <void/>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>
+      <function>eglGetError</function> returns the error of the last
+      called <acronym>EGL</acronym> function in the current thread.
+      Initially, the error is set to <constant>EGL_SUCCESS</constant>.
+    </para>
+
+    <para>
+      The following errors are currently defined:
+    </para>
+
+    <variablelist>
+      <varlistentry>
+      <term><constant>EGL_SUCCESS</constant></term>
+      <listitem><para>The last function succeeded without error.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+      <term><constant>EGL_NOT_INITIALIZED</constant></term>
+      <listitem><para>EGL is not initialized, or could not be initialized,
+        for the specified EGL display connection.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+      <term><constant>EGL_BAD_ACCESS</constant></term>
+      <listitem><para>EGL cannot access a requested resource
+        (for example a context is bound in another thread).
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+      <term><constant>EGL_BAD_ALLOC</constant></term>
+      <listitem><para>EGL failed to allocate resources for the requested
+        operation.</para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+      <term><constant>EGL_BAD_ATTRIBUTE</constant></term>
+      <listitem><para>An unrecognized attribute or attribute value was
+        passed in the attribute list.
+      </para></listitem>
+      </varlistentry>
+      <varlistentry>
+
+      <term><constant>EGL_BAD_CONTEXT</constant></term>
+      <listitem><para>An <type>EGLContext</type> argument does not name a
+        valid EGL rendering context.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+      <term><constant>EGL_BAD_CONFIG</constant></term>
+      <listitem><para>
+        An <type>EGLConfig</type> argument does not name a valid
+        EGL frame buffer configuration.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+      <term><constant>EGL_BAD_CURRENT_SURFACE</constant></term>
+      <listitem><para>The current surface of the calling thread is a window,
+        pixel buffer or pixmap that is no longer valid.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+      <term><constant>EGL_BAD_DISPLAY</constant></term>
+      <listitem><para>An <type>EGLDisplay</type> argument does not name a
+        valid EGL display connection.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+      <term><constant>EGL_BAD_SURFACE</constant></term>
+      <listitem><para>An <type>EGLSurface</type> argument does not name a
+        valid surface (window, pixel buffer or pixmap) configured for
+        GL rendering.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+      <term><constant>EGL_BAD_MATCH</constant></term>
+      <listitem><para>Arguments are inconsistent (for example, a valid
+        context requires buffers not supplied by a valid surface).
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+      <term><constant>EGL_BAD_PARAMETER</constant></term>
+      <listitem><para>One or more argument values are invalid.</para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+      <term><constant>EGL_BAD_NATIVE_PIXMAP</constant></term>
+      <listitem><para>
+        A <type>NativePixmapType</type> argument does not refer to
+        a valid native pixmap.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+      <term><constant>EGL_BAD_NATIVE_WINDOW</constant></term>
+      <listitem><para>A <type>NativeWindowType</type> argument does not refer
+        to a valid native window.
+      </para></listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para>
+      A call to <function>eglGetError</function> sets the error to
+      <constant>EGL_SUCCESS</constant>.
+    </para>
+  </refsect1>
+
+</refentry>

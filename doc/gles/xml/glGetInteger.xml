@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glGetInteger">
+  <refmeta>
+    <refentrytitle>glGetInteger</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refdescriptor>glGetInteger</refdescriptor>
+    <refname>glGetIntegerv</refname>
+    <refpurpose>return the value or values of a selected parameter</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glGetIntegerv</function></funcdef>
+        <paramdef>GLenum <parameter>pname</parameter></paramdef>
+        <paramdef>GLint * <parameter>params</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>pname</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the parameter value to be returned. The
+          symbolic constants in the list below are accepted.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>params</parameter>
+        </term>
+
+        <listitem>
+          <para>Returns the value or values of the specified parameter.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para><function>glGetIntegerv</function>
+    returns values for static state variables in GL. 
+    <parameter>pname</parameter>
+    is a symbolic constant indicating the static state variable to
+    be returned, and <parameter>params</parameter>
+    is a pointer to an array of integer in which to place the
+    returned data.</para>
+
+    <para>The following symbolic constants are accepted by 
+    <parameter>pname</parameter>:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <constant>GL_ALIASED_POINT_SIZE_RANGE</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns two values, the smallest and largest supported sizes for
+          aliased points. The range must include 1.
+          See 
+          <citerefentry><refentrytitle>glPointSize</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_ALIASED_LINE_WIDTH_RANGE</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns two values, the smallest and largest supported widths for
+          aliased lines. The range must include 1. See 
+          <citerefentry><refentrytitle>glLineWidth</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_ALPHA_BITS</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value, the number of alpha bitplanes in the
+          color buffer.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_BLUE_BITS</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value, the number of blue bitplanes in the
+          color buffer.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_COMPRESSED_TEXTURE_FORMATS</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter> returns 
+          <constant>GL_NUM_COMPRESSED_TEXTURE_FORMATS</constant>
+          values, the supported compressed texture formats. See 
+          <citerefentry><refentrytitle>glCompressedTexImage2D</refentrytitle></citerefentry>
+          and 
+          <citerefentry><refentrytitle>glCompressedTexSubImage2D</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_DEPTH_BITS</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value, the number of bitplanes in the depth
+          buffer.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_GREEN_BITS</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value, the number of green bitplanes in the
+          color buffer.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value, the preferred format for pixel read back. See
+          <citerefentry><refentrytitle>glReadPixels</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_IMPLEMENTATION_COLOR_READ_TYPE_OES</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value, the preferred type for pixel read back. See
+          <citerefentry><refentrytitle>glReadPixels</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_MAX_ELEMENTS_INDICES</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value, the recommended maximum number of
+          vertex array indices. See 
+          <citerefentry><refentrytitle>glDrawElements</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_MAX_ELEMENTS_VERTICES</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value, the recommended maximum number of
+          vertex array vertices. See 
+          <citerefentry><refentrytitle>glDrawArrays</refentrytitle></citerefentry>
+          and 
+          <citerefentry><refentrytitle>glDrawElements</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_MAX_LIGHTS</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value, the maximum number of lights. The
+          value must be at least 8. See 
+          <citerefentry><refentrytitle>glLight</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_MAX_MODELVIEW_STACK_DEPTH</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value, the maximum supported depth of the
+          modelview matrix stack. The value must be at least 16.
+          See 
+          <citerefentry><refentrytitle>glPushMatrix</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_MAX_PROJECTION_STACK_DEPTH</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter> 
+          returns one value, the maximum supported depth of the
+          projection matrix stack. The value must be at least 2.
+          See 
+          <citerefentry><refentrytitle>glPushMatrix</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_MAX_TEXTURE_SIZE</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value. The value gives a rough estimate of the largest
+          texture that the GL can handle. The value must be at least 64.
+          See 
+          <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry>,
+          <citerefentry><refentrytitle>glCompressedTexImage2D</refentrytitle></citerefentry>, and
+          <citerefentry><refentrytitle>glCopyTexImage2D</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_MAX_TEXTURE_STACK_DEPTH</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value, the maximum supported depth of the
+          texture matrix stack. The value must be at least 2. See 
+          <citerefentry><refentrytitle>glPushMatrix</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_MAX_TEXTURE_UNITS</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns a single value indicating the number of texture
+          units supported. The value must be at least 1. See 
+          <citerefentry><refentrytitle>glActiveTexture</refentrytitle></citerefentry>,
+          <citerefentry><refentrytitle>glClientActiveTexture</refentrytitle></citerefentry>
+          and 
+          <citerefentry><refentrytitle>glMultiTexCoord</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_MAX_VIEWPORT_DIMS</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns two values: the maximum supported width and
+          height of the viewport. These must be at least as large
+          as the visible dimensions of the display being rendered
+          to. See 
+          <citerefentry><refentrytitle>glViewport</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_NUM_COMPRESSED_TEXTURE_FORMATS</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value, the number of supportex compressed
+          texture formats. The value must be at least 10. See 
+          <citerefentry><refentrytitle>glCompressedTexImage2D</refentrytitle></citerefentry>
+          and 
+          <citerefentry><refentrytitle>glCompressedTexSubImage2D</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_RED_BITS</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value, the number of red bitplanes in each
+          color buffer.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_SMOOTH_LINE_WIDTH_RANGE</constant>
+        </term>
+
+        <listitem>
+          <para>
+          <parameter>params</parameter>
+
+          returns two values, the smallest and largest supported
+          widths for antialiased lines. The range must include 1. See
+          <citerefentry><refentrytitle>glLineWidth</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_SMOOTH_POINT_SIZE_RANGE</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns two values, the smallest and largest supported
+          widths for antialiased points. The range must include 1. See
+          <citerefentry><refentrytitle>glPointSize</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_STENCIL_BITS</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value, the number of bitplanes in the stencil
+          buffer.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_SUBPIXEL_BITS</constant>
+        </term>
+
+        <listitem>
+          <para><parameter>params</parameter>
+          returns one value, an estimate of the number of bits of
+          subpixel resolution that are used to position rasterized
+          geometry in window coordinates. The value must be at
+          least 4.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>pname</parameter> is not an accepted value.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glGetError</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glGetString</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="eglSwapBuffers">
+
+  <refmeta>
+    <refentrytitle>eglSwapBuffers</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>eglSwapBuffers</refname>
+    <refpurpose>
+      post <acronym>EGL</acronym> surface color buffer to a native window
+    </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>EGLBoolean <function>eglSwapBuffers</function></funcdef>
+        <paramdef>EGLDisplay <parameter>display</parameter></paramdef>
+        <paramdef>EGLSurface <parameter>surface</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter>display</parameter></term>
+        <listitem>
+          <para>
+            Specifies the EGL display connection.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>surface</parameter></term>
+        <listitem>
+          <para>
+            Specifies the EGL drawing surface whose buffers are to be swapped.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>
+      If <parameter>surface</parameter> is a window surface,
+      <function>eglSwapBuffers</function> posts its color buffer
+      to the associated native window.
+    </para>
+
+    <para>
+      <function>eglSwapBuffers</function> performs an implicit 
+      <citerefentry><refentrytitle>glFlush</refentrytitle></citerefentry>
+      before it returns. Subsequent
+      GL commands may be issued immediately after calling
+      <function>eglSwapBuffers</function>,
+      but are not executed until the buffer exchange is completed.
+    </para>
+
+    <para>
+      If <parameter>surface</parameter> is a pixel buffer or a pixmap,
+      <function>eglSwapBuffers</function>
+      has no effect, and no error is generated.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Notes</title>
+
+    <para>
+      The color buffer of <parameter>surface</parameter> is left undefined
+      after calling <function>eglSwapBuffers</function>.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para>
+      <constant>EGL_FALSE</constant> is returned if swapping of the
+      surface buffers fails, <constant>EGL_TRUE</constant> otherwise.
+    </para>
+
+    <para>
+      <constant>EGL_BAD_DISPLAY</constant> is generated if
+      <parameter>display</parameter> is not an EGL display connection.
+    </para>
+    
+    <para>
+      <constant>EGL_NOT_INITIALIZED</constant> is generated if
+      <parameter>display</parameter> has not been initialized.
+    </para>
+
+    <para>
+      <constant>EGL_BAD_SURFACE</constant> is generated if
+      <parameter>surface</parameter> is not an EGL drawing surface.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+      <citerefentry><refentrytitle>glFlush</refentrytitle></citerefentry>,
+      <citerefentry><refentrytitle>eglCopyBuffers</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+
+</refentry>

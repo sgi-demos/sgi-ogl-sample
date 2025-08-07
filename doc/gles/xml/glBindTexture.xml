@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glBindTexture">
+  <refmeta>
+    <refentrytitle>glBindTexture</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>glBindTexture</refname>
+    <refpurpose>bind a named texture to a texturing target</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glBindTexture</function></funcdef>
+        <paramdef>GLenum <parameter>target</parameter></paramdef>
+        <paramdef>GLuint <parameter>texture</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>target</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the target to which the texture is bound.
+          Must be <constant>GL_TEXTURE_2D</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>texture</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the name of a texture.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para><function>glBindTexture</function>
+    lets you create or use a named texture. Calling 
+    <function>glBindTexture</function>
+    with <parameter>target</parameter>
+    set to <constant>GL_TEXTURE_2D</constant>, and 
+    <parameter>texture</parameter>
+    set to the name of the new texture binds the texture name to
+    the target. When a texture is bound to a target, the previous
+    binding for that target is automatically broken.</para>
+
+    <para>Texture names are unsigned integers. The value 0 is
+    reserved to represent the default texture for each texture
+    target. Texture names and the corresponding texture contents
+    are local to the shared texture-object space (see 
+    <citerefentry><refentrytitle>eglCreateContext</refentrytitle></citerefentry>)
+    of the current GL rendering context.</para>
+
+    <para>You may use 
+    <citerefentry><refentrytitle>glGenTextures</refentrytitle></citerefentry>
+    to generate a set of new texture names.</para>
+
+    <para>While a texture is bound, GL operations on the target to
+    which it is bound affect the bound texture. If texture mapping
+    of the dimensionality of the target to which a texture is bound
+    is active, the bound texture is used. In effect, the texture
+    targets become aliases for the textures currently bound to
+    them, and the texture name 0 refers to the default textures
+    that were bound to them at initialization.</para>
+
+    <para>A texture binding created with <function>glBindTexture</function>
+    remains active until a different texture is bound to the same
+    target, or until the bound texture is deleted with 
+    <citerefentry><refentrytitle>glDeleteTextures</refentrytitle></citerefentry>.</para>
+
+    <para>Once created, a named texture may be re-bound to the
+    target of the matching dimensionality as often as needed. It is
+    usually much faster to use <function>glBindTexture</function>
+    to bind an existing named texture to one of the texture targets
+    than it is to reload the texture image using 
+    <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry>.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>target</parameter> is not one of the allowable values.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>eglCreateContext</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glActiveTexture</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCompressedTexImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCopyTexImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glDeleteTextures</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glGenTextures</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glGetInteger</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexParameter</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

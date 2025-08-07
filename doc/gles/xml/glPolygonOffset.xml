@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glPolygonOffset">
+  <refmeta>
+    <refentrytitle>glPolygonOffset</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refdescriptor>glPolygonOffset</refdescriptor>
+    <refname>glPolygonOffset</refname>
+    <refname>glPolygonOffsetx</refname>
+    <refpurpose>set the scale and units used to calculate depth
+    values</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glPolygonOffset</function></funcdef>
+        <paramdef>GLfloat <parameter>factor</parameter></paramdef>
+        <paramdef>GLfloat <parameter>units</parameter></paramdef>
+      </funcprototype>
+      <funcprototype>
+        <funcdef>void <function>glPolygonOffsetx</function></funcdef>
+        <paramdef>GLfixed <parameter>factor</parameter></paramdef>
+        <paramdef>GLfixed <parameter>units</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>factor</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies a scale factor that is used to create a
+          variable depth offset for each polygon. The initial value
+          is 0.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>units</parameter>
+        </term>
+
+        <listitem>
+          <para>Is multiplied by an implementation-specific value
+          to create a constant depth offset. The initial value is 0.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>When <constant>GL_POLYGON_OFFSET_FILL</constant>
+    is enabled, each fragment's <parameter>depth</parameter>
+    value will be offset after it is interpolated from the 
+    <parameter>depth</parameter>
+    values of the appropriate vertices. The value of the offset is 
+    <inlineequation><math>
+      <mi>m</mi>
+      <mo>*</mo>
+      <mi>factor</mi>
+      <mo>+</mo>
+      <mi>r</mi>
+      <mo>*</mo>
+      <mi>units</mi>
+    </math></inlineequation>,
+    where <replaceable>m</replaceable>
+    is a measurement of the change in depth relative to the screen
+    area of the polygon, and <replaceable>r</replaceable>
+    is the smallest value that is guaranteed to produce a
+    resolvable offset for a given implementation. The offset is
+    added before the depth test is performed and before the value
+    is written into the depth buffer.</para>
+
+    <para>
+    <function>glPolygonOffset</function>
+    is useful for for applying decals to surfaces.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glDepthFunc</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glEnable</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

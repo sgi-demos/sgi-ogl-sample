@@ -1,0 +1,24 @@
+OPENGL ES REFERENCE MANUAL
+
+
+The reference manual (also known as man pages) come in three
+flavors:
+
+
+PDF file
+    Use Adobe Acrobat Reader to view.
+
+HTML files
+    Use any html browser to view.
+    The HTML files can be customized by modifying the CSS1 stylesheet.
+
+man pages
+    Use one of the following commands to view.
+
+    $ man -M `pwd` -p te <function_name>
+    $ cat <function_name>.3G | tbl | eqn | groff -man | less
+    $ cat <function_name>.3G | tbl | neqn | nroff -man -Tascii | more
+
+
+-- Claude Knaus
+claudek@sgi.com

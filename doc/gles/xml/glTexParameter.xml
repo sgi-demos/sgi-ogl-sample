@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glTexParameter">
+  <refmeta>
+    <refentrytitle>glTexParameter</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refdescriptor>glTexParameter</refdescriptor>
+    <refname>glTexParameterf</refname>
+    <refname>glTexParameterx</refname>
+    <refpurpose>set texture parameters</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glTexParameterf</function></funcdef>
+        <paramdef>GLenum <parameter>target</parameter></paramdef>
+        <paramdef>GLenum <parameter>pname</parameter></paramdef>
+        <paramdef>GLfloat <parameter>param</parameter></paramdef>
+      </funcprototype>
+      <funcprototype>
+        <funcdef>void <function>glTexParameterx</function></funcdef>
+        <paramdef>GLenum <parameter>target</parameter></paramdef>
+        <paramdef>GLenum <parameter>pname</parameter></paramdef>
+        <paramdef>GLfixed <parameter>param</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>target</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the target texture, which must be 
+          <constant>GL_TEXTURE_2D</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>pname</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the symbolic name of a single-valued
+          texture parameter. 
+          <parameter>pname</parameter> 
+          can be one of the following: 
+          <constant>GL_TEXTURE_MIN_FILTER</constant>, 
+          <constant>GL_TEXTURE_MAG_FILTER</constant>, 
+          <constant>GL_TEXTURE_WRAP_S</constant>, or 
+          <constant>GL_TEXTURE_WRAP_T</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>param</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the value of 
+          <parameter>pname</parameter>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>Texture mapping is a technique that applies an image onto
+    an object's surface as if the image were a decal or cellophane
+    shrink-wrap. The image is created in texture space, with an
+    <inlineequation><math>
+      <mfenced><mi>s</mi><mi>t</mi></mfenced>
+    </math></inlineequation>
+    coordinate system. A texture is a one- or two-dimensional
+    image and a set of parameters that determine how samples are
+    derived from the image.</para>
+
+    <para><function>glTexParameter</function> assigns the value or values in 
+    <parameter>param</parameter>to the texture parameter specified as 
+    <parameter>pname</parameter>.  <parameter>target</parameter>
+    defines the target texture, which must be 
+    <constant>GL_TEXTURE_2D</constant>.  The following symbols are accepted in 
+    <parameter>pname</parameter>:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <constant>GL_TEXTURE_MIN_FILTER</constant>
+        </term>
+
+        <listitem>
+          <para>The texture minifying function is used whenever the
+          pixel being textured maps to an area greater than one
+          texture element. There are six defined minifying
+          functions. Two of them use the nearest one or nearest
+          four texture elements to compute the texture value. The
+          other four use mipmaps.</para>
+
+    <para>A mipmap is an ordered set of arrays representing the
+    same image at progressively lower resolutions. If the texture
+    has dimensions 
+    <inlineequation><math>
+      <msup><mn>2</mn><mi>n</mi></msup><mo>x</mo><msup><mn>2</mn><mi>m</mi></msup>
+    </math></inlineequation>,
+    there are 
+    <inlineequation><math>
+      <mo>max</mo><mfenced><mi>n</mi><mi>m</mi></mfenced><mo>+</mo><mn>1</mn>
+    </math></inlineequation>
+    mipmaps. The first mipmap is the original texture, with
+    dimensions 
+    <inlineequation><math>
+      <msup><mn>2</mn><mi>n</mi></msup><mo>x</mo><msup><mn>2</mn><mi>m</mi></msup>
+    </math></inlineequation>.
+    Each subsequent mipmap has dimensions 
+    <inlineequation><math>
+      <msup><mn>2</mn><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow></msup>
+      <mo>x</mo>
+      <msup><mn>2</mn><mrow><mi>l</mi><mo>-</mo><mn>1</mn></mrow></msup>
+    </math></inlineequation>,
+    where 
+    <inlineequation><math>
+      <msup><mn>2</mn><mi>k</mi></msup>
+      <mo>x</mo>
+      <msup><mn>2</mn><mi>l</mi></msup>
+    </math></inlineequation>
+    are the dimensions of the previous mipmap, until either 
+    <inlineequation><math>
+      <mi>k</mi><mo>=</mo><mn>0</mn>
+    </math></inlineequation>
+    or 
+    <inlineequation><math>
+      <mi>l</mi><mo>=</mo><mn>0</mn>
+    </math></inlineequation>.
+    At that point, subsequent mipmaps have dimension 
+    <inlineequation><math>
+      <mn>1</mn><mo>x</mo><msup><mn>2</mn><mrow><mi>l</mi><mo>-</mo><mn>1</mn></mrow></msup>
+    </math></inlineequation>
+    or 
+    <inlineequation><math>
+      <msup><mn>2</mn><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow></msup>
+      <mo>x</mo><mn>1</mn>
+    </math></inlineequation>
+    until the final mipmap, which has dimension 
+    <inlineequation><math>
+      <mn>1</mn><mo>x</mo><mn>1</mn>
+    </math></inlineequation>.
+    To define the mipmaps, call 
+    <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry> or 
+    <citerefentry><refentrytitle>glCopyTexImage2D</refentrytitle></citerefentry>
+    with the <parameter>level</parameter> 
+    argument indicating the order of the mipmaps. Level 0 is the
+    original texture. Level 
+    <inlineequation><math>
+      <mo>max</mo><mfenced><mi>n</mi><mi>m</mi></mfenced>
+    </math></inlineequation>
+    is the final 
+    <inlineequation><math>
+      <mn>1</mn><mo>x</mo><mn>1</mn>
+    </math></inlineequation>
+    mipmap.</para>
+
+    <para><parameter>param</parameter> 
+    supplies a function for minifying the texture as one of the
+    following:</para>
+
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_NEAREST</constant>
+        </term>
+
+        <listitem>
+          <para>Returns the value of the texture element that is
+          nearest (in Manhattan distance) to the center of the
+          pixel being textured.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_LINEAR</constant>
+        </term>
+
+        <listitem>
+          <para>Returns the weighted average of the four texture
+          elements that are closest to the center of the pixel
+          being textured. These can include border texture
+          elements, depending on the values of 
+          <constant>GL_TEXTURE_WRAP_S</constant> and 
+          <constant>GL_TEXTURE_WRAP_T</constant>,
+          and on the exact mapping.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_NEAREST_MIPMAP_NEAREST</constant>
+        </term>
+
+        <listitem>
+          <para>Chooses the mipmap that most closely matches the
+          size of the pixel being textured and uses the 
+          <constant>GL_NEAREST</constant>
+          criterion (the texture element nearest to the center of
+          the pixel) to produce a texture value.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_LINEAR_MIPMAP_NEAREST</constant>
+        </term>
+
+        <listitem>
+          <para>Chooses the mipmap that most closely matches the
+          size of the pixel being textured and uses the 
+          <constant>GL_LINEAR</constant>
+
+          criterion (a weighted average of the four texture
+          elements that are closest to the center of the pixel) to
+          produce a texture value.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_NEAREST_MIPMAP_LINEAR</constant>
+        </term>
+
+        <listitem>
+          <para>Chooses the two mipmaps that most closely match the
+          size of the pixel being textured and uses the 
+          <constant>GL_NEAREST</constant>
+
+          criterion (the texture element nearest to the center of
+          the pixel) to produce a texture value from each mipmap.
+          The final texture value is a weighted average of those
+          two values.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_LINEAR_MIPMAP_LINEAR</constant>
+        </term>
+
+        <listitem>
+          <para>Chooses the two mipmaps that most closely match the
+          size of the pixel being textured and uses the 
+          <constant>GL_LINEAR</constant>
+
+          criterion (a weighted average of the four texture
+          elements that are closest to the center of the pixel) to
+          produce a texture value from each mipmap. The final
+          texture value is a weighted average of those two
+          values.</para>
+
+          <para>As more texture elements are sampled in the minification
+          process, fewer aliasing artifacts will be apparent. While the 
+          <constant>GL_NEAREST</constant> and 
+          <constant>GL_LINEAR</constant> 
+          minification functions can be faster than the other four, they
+          sample only one or four texture elements to determine the
+          texture value of the pixel being rendered and can produce moire
+          patterns or ragged transitions. The initial value of 
+          <constant>GL_TEXTURE_MIN_FILTER</constant> is 
+          <constant>GL_NEAREST_MIPMAP_LINEAR</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_TEXTURE_MAG_FILTER</constant>
+        </term>
+
+        <listitem>
+          <para>The texture magnification function is used when the
+          pixel being textured maps to an area less than or equal
+          to one texture element. It sets the texture magnification
+          function to either 
+          <constant>GL_NEAREST</constant> or 
+          <constant>GL_LINEAR</constant> (see below). 
+          <constant>GL_NEAREST</constant> is generally faster than 
+          <constant>GL_LINEAR</constant>,
+          but it can produce textured images with sharper edges
+          because the transition between texture elements is not as
+          smooth. The initial value of 
+          <constant>GL_TEXTURE_MAG_FILTER</constant> is 
+          <constant>GL_LINEAR</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_NEAREST</constant>
+        </term>
+
+        <listitem>
+          <para>Returns the value of the texture element that is
+          nearest (in Manhattan distance) to the center of the
+          pixel being textured.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_LINEAR</constant>
+        </term>
+
+        <listitem>
+          <para>Returns the weighted average of the four texture
+          elements that are closest to the center of the pixel
+          being textured. These can include border texture
+          elements, depending on the values of 
+          <constant>GL_TEXTURE_WRAP_S</constant> and 
+          <constant>GL_TEXTURE_WRAP_T</constant>,
+          and on the exact mapping.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <constant>GL_TEXTURE_WRAP_S</constant>
+        </term>
+
+        <listitem>
+          <para>Sets the wrap parameter for texture coordinate 
+          <replaceable>s</replaceable> to either 
+          <constant>GL_CLAMP</constant>, 
+          <constant>GL_CLAMP_TO_EDGE</constant>, or 
+          <constant>GL_REPEAT</constant>. 
+          <constant>GL_CLAMP</constant> causes 
+          <replaceable>s</replaceable>
+          coordinates to be clamped to the range [0, 1] and is
+          useful for preventing wrapping artifacts when mapping a
+          single image onto an object. 
+          <constant>GL_CLAMP_TO_EDGE</constant>
+          causes <replaceable>s</replaceable>
+          coordinates to be clamped to the range 
+          <inlineequation><math>
+            <mo>[</mo>
+              <mfrac><mn>1</mn><mrow><mn>2</mn><mi>N</mi></mrow></mfrac>
+              <mo>,</mo>
+              <mn>1</mn>
+              <mo>-</mo>
+              <mfrac><mn>1</mn><mrow><mn>2</mn><mi>N</mi></mrow></mfrac>
+            <mo>]</mo>
+          </math></inlineequation>,
+          where <replaceable>N</replaceable>
+          is the size of the texture in the direction of clamping. 
+          <constant>GL_REPEAT</constant>
+          causes the integer part of the <replaceable>s</replaceable>
+          coordinate to be ignored; the GL uses only the fractional
+          part, thereby creating a repeating pattern. Border
+          texture elements are accessed only if wrapping is set to 
+          <constant>GL_CLAMP</constant>. Initially, 
+          <constant>GL_TEXTURE_WRAP_S</constant> is set to 
+          <constant>GL_REPEAT</constant>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <constant>GL_TEXTURE_WRAP_T</constant>
+        </term>
+
+        <listitem>
+          <para>Sets the wrap parameter for texture coordinate 
+          <replaceable>t</replaceable>
+          to either <constant>GL_CLAMP</constant>, 
+          <constant>GL_CLAMP_TO_EDGE</constant>, or 
+          <constant>GL_REPEAT</constant>. See the discussion under 
+          <constant>GL_TEXTURE_WRAP_S</constant>. Initially, 
+          <constant>GL_TEXTURE_WRAP_T</constant> is set to 
+          <constant>GL_REPEAT</constant>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Notes</title>
+
+    <para>Suppose that a program has enabled texturing (by calling 
+    <citerefentry><refentrytitle>glEnable</refentrytitle></citerefentry>
+    with argument <constant>GL_TEXTURE_2D</constant> and has set 
+    <constant>GL_TEXTURE_MIN_FILTER</constant>
+    to one of the functions that requires a mipmap. If either the
+    dimensions of the texture images currently defined (with
+    previous calls to 
+    <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry>,
+    or 
+    <citerefentry><refentrytitle>glCopyTexImage2D</refentrytitle></citerefentry>)
+    do not follow the proper sequence for mipmaps (described
+    above), or there are fewer texture images defined than are
+    needed, or the set of texture images have differing numbers of
+    texture components, then it is as if texture mapping were
+    disabled.</para>
+
+    <para>Linear filtering accesses the four nearest texture
+    elements.</para>
+
+    <para><function>glTexParameter</function>
+    specifies the texture parameters for the active texture unit,
+    specified by calling 
+    <citerefentry><refentrytitle>glActiveTexture</refentrytitle></citerefentry>.
+
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>target</parameter> or 
+    <parameter>pname</parameter> 
+    is not one of the accepted defined values.</para>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>param</parameter> 
+    should have a defined constant value (based on the value of 
+    <parameter>pname</parameter>) and does not.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glActiveTexture</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glBindTexture</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCopyTexImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCopyTexSubImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glEnable</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glPixelStore</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexEnv</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexSubImage2D</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

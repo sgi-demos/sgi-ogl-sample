@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glFrontFace">
+  <refmeta>
+    <refentrytitle>glFrontFace</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>glFrontFace</refname>
+    <refpurpose>define front- and back-facing polygons</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glFrontFace</function></funcdef>
+        <paramdef>GLenum <parameter>mode</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>mode</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the orientation of front-facing polygons.
+          <constant>GL_CW</constant> and 
+          <constant>GL_CCW</constant> are accepted. The initial value is 
+          <constant>GL_CCW</constant>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>In a scene composed entirely of opaque closed surfaces,
+    back-facing polygons are never visible. Eliminating (culling) these
+    invisible polygons has the obvious benefit of speeding up the
+    rendering of the image. To enable and disable culling, call 
+    <citerefentry><refentrytitle>glEnable</refentrytitle></citerefentry> and 
+    <citerefentry><refentrytitle>glDisable</refentrytitle></citerefentry>
+    with argument <constant>GL_CULL_FACE</constant>.
+    Culling is initially disabled.
+    </para>
+
+    <para>The projection of a polygon to window coordinates is said
+    to have clockwise winding if an imaginary object following the
+    path from its first vertex, its second vertex, and so on, to
+    its last vertex, and finally back to its first vertex, moves in
+    a clockwise direction about the interior of the polygon. The
+    polygon's winding is said to be counterclockwise if the
+    imaginary object following the same path moves in a
+    counterclockwise direction about the interior of the polygon. 
+    <function>glFrontFace</function>
+    specifies whether polygons with clockwise winding in window
+    coordinates, or counterclockwise winding in window coordinates,
+    are taken to be front-facing. Passing 
+    <constant>GL_CCW</constant> to <parameter>mode</parameter>
+    selects counterclockwise polygons as front-facing. 
+    <constant>GL_CW</constant>
+    selects clockwise polygons as front-facing. By default,
+    counterclockwise polygons are taken to be front-facing.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>mode</parameter> is not an accepted value.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glCullFace</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glEnable</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glLightModel</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

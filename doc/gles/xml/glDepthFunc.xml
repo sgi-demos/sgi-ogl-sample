@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glDepthFunc">
+  <refmeta>
+    <refentrytitle>glDepthFunc</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>glDepthFunc</refname>
+    <refpurpose>specify the value used for depth buffer comparisons</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glDepthFunc</function></funcdef>
+        <paramdef>GLenum <parameter>func</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>func</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the depth comparison function. Symbolic constants 
+          <constant>GL_NEVER</constant>, 
+          <constant>GL_LESS</constant>, 
+          <constant>GL_EQUAL</constant>, 
+          <constant>GL_LEQUAL</constant>, 
+          <constant>GL_GREATER</constant>, 
+          <constant>GL_NOTEQUAL</constant>, 
+          <constant>GL_GEQUAL</constant>, and 
+          <constant>GL_ALWAYS</constant> are accepted. The initial value is 
+          <constant>GL_LESS</constant>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>
+    <function>glDepthFunc</function>
+    specifies the function used to compare each incoming pixel
+    depth value with the depth value present in the depth buffer.
+    The comparison is performed only if depth testing is enabled.
+    To enable and disable depth testing, call
+    <citerefentry><refentrytitle>glEnable</refentrytitle></citerefentry> and
+    <citerefentry><refentrytitle>glDisable</refentrytitle></citerefentry>
+    with argument <constant>GL_DEPTH_TEST</constant>.
+    Depth testing is initially disabled.</para>
+
+    <para><parameter>func</parameter>
+    specifies the conditions under which the pixel will be drawn.
+    The comparison functions are as follows:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <constant>GL_NEVER</constant>
+        </term>
+
+        <listitem>
+          <para>Never passes.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_LESS</constant>
+        </term>
+
+        <listitem>
+          <para>Passes if the incoming depth value is less than the
+          stored depth value.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_EQUAL</constant>
+        </term>
+
+        <listitem>
+          <para>Passes if the incoming depth value is equal to the
+          stored depth value.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_LEQUAL</constant>
+        </term>
+
+        <listitem>
+          <para>Passes if the incoming depth value is less than or
+          equal to the stored depth value.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_GREATER</constant>
+        </term>
+
+        <listitem>
+          <para>Passes if the incoming depth value is greater than
+          the stored depth value.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_NOTEQUAL</constant>
+        </term>
+
+        <listitem>
+          <para>Passes if the incoming depth value is not equal to
+          the stored depth value.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_GEQUAL</constant>
+        </term>
+
+        <listitem>
+          <para>Passes if the incoming depth value is greater than
+          or equal to the stored depth value.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_ALWAYS</constant>
+        </term>
+
+        <listitem>
+          <para>Always passes.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The initial value of <parameter>func</parameter> is 
+    <constant>GL_LESS</constant>. Initially, depth testing is disabled. 
+    Even if the depth buffer exists and the depth mask is non-zero,
+    the depth buffer is not updated if the depth test is disabled.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>func</parameter> is not an accepted value.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glDepthRange</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glEnable</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glPolygonOffset</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

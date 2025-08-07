@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glStencilOp">
+  <refmeta>
+    <refentrytitle>glStencilOp</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>glStencilOp</refname>
+    <refpurpose>set stencil test actions</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glStencilOp</function></funcdef>
+        <paramdef>GLenum <parameter>fail</parameter></paramdef>
+        <paramdef>GLenum <parameter>zfail</parameter></paramdef>
+        <paramdef>GLenum <parameter>zpass</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>fail</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the action to take when the stencil test
+          fails. Six symbolic constants are accepted: 
+          <constant>GL_KEEP</constant>, 
+          <constant>GL_ZERO</constant>, 
+          <constant>GL_REPLACE</constant>, 
+          <constant>GL_INCR</constant>, 
+          <constant>GL_DECR</constant>, and 
+          <constant>GL_INVERT</constant>. The initial value is 
+          <constant>GL_KEEP</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>zfail</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the stencil action when the stencil test
+          passes, but the depth test fails. 
+          <parameter>zfail</parameter> accepts the same symbolic constants as 
+          <parameter>fail</parameter>. The initial value is 
+          <constant>GL_KEEP</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>zpass</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the stencil action when both the stencil
+          test and the depth test pass, or when the stencil test
+          passes and either there is no depth buffer or depth
+          testing is not enabled. 
+          <parameter>zpass</parameter> accepts the same symbolic constants as 
+          <parameter>fail</parameter>. The initial value is 
+          <constant>GL_KEEP</constant>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>Stenciling, like depth-buffering, enables and disables
+    drawing on a per-pixel basis. You draw into the stencil planes
+    using GL drawing primitives, then render geometry and images,
+    using the stencil planes to mask out portions of the screen.
+    Stenciling is typically used in multipass rendering algorithms
+    to achieve special effects, such as decals, outlining, and
+    constructive solid geometry rendering.</para>
+
+    <para>The stencil test conditionally eliminates a pixel based
+    on the outcome of a comparison between the value in the stencil
+    buffer and a reference value. To enable and disable stencil test, call 
+    <citerefentry><refentrytitle>glEnable</refentrytitle></citerefentry> and 
+    <citerefentry><refentrytitle>glDisable</refentrytitle></citerefentry>
+    with argument <constant>GL_STENCIL_TEST</constant>.
+    To control it, call
+    <citerefentry><refentrytitle>glStencilFunc</refentrytitle></citerefentry>.
+    Stenciling is initially disabled.
+    </para>
+
+    <para><function>glStencilOp</function>
+    takes three arguments that indicate what happens to the stored
+    stencil value while stenciling is enabled. If the stencil test
+    fails, no change is made to the pixel's color or depth buffers,
+    and <parameter>fail</parameter> 
+    specifies what happens to the stencil buffer contents. The
+    following six actions are possible.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <constant>GL_KEEP</constant>
+        </term>
+
+        <listitem>
+          <para>Keeps the current value.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_ZERO</constant>
+        </term>
+
+        <listitem>
+          <para>Sets the stencil buffer value to 0.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_REPLACE</constant>
+        </term>
+
+        <listitem>
+          <para>Sets the stencil buffer value to 
+          <parameter>ref</parameter>, as specified by 
+          <citerefentry><refentrytitle>glStencilFunc</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_INCR</constant>
+        </term>
+
+        <listitem>
+          <para>Increments the current stencil buffer value. Clamps
+          to the maximum representable unsigned value.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_DECR</constant>
+        </term>
+
+        <listitem>
+          <para>Decrements the current stencil buffer value. Clamps
+          to 0.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_INVERT</constant>
+        </term>
+
+        <listitem>
+          <para>Bitwise inverts the current stencil buffer value.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Stencil buffer values are treated as unsigned integers.
+    When incremented and decremented, values are clamped to 0 and
+    <inlineequation><math>
+      <msup><mn>2</mn><mi>n</mi></msup><mo>-</mo><mn>1</mn>
+    </math></inlineequation>,
+    where <replaceable>n</replaceable> is the value returned by querying 
+    <constant>GL_STENCIL_BITS</constant>.</para>
+
+    <para>The other two arguments to <function>glStencilOp</function>
+    specify stencil buffer actions that depend on whether
+    subsequent depth buffer tests succeed (<parameter>zpass</parameter>)
+    or fail
+    (<parameter>zfail</parameter>) (see 
+    <citerefentry><refentrytitle>glDepthFunc</refentrytitle></citerefentry>).
+    The actions are specified using the same six symbolic constants as 
+    <parameter>fail</parameter>. Note that <parameter>zfail</parameter>
+    is ignored when there is no depth buffer, or when the depth
+    buffer is not enabled. In these cases, <parameter>fail</parameter> and 
+    <parameter>zpass</parameter> 
+    specify stencil action when the stencil test fails and passes,
+    respectively.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Notes</title>
+
+    <para>If there is no
+    stencil buffer, no stencil modification can occur and it is as
+    if the stencil tests always pass, regardless of any call to 
+    <function>glStencilOp</function>.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>fail</parameter>, 
+    <parameter>zfail</parameter>, or 
+    <parameter>zpass</parameter> 
+    is any value other than the six defined constant values.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Associated Gets</title>
+
+    <para>
+    <citerefentry><refentrytitle>glGetInteger</refentrytitle></citerefentry>
+    with argument <constant>GL_STENCIL_BITS</constant>
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glAlphaFunc</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glBlendFunc</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glDepthFunc</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glEnable</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glGetInteger</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glLogicOp</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glStencilFunc</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

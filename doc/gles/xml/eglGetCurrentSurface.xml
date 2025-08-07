@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="eglGetCurrentSurface">
+
+  <refmeta>
+    <refentrytitle>eglGetCurrentSurface</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>eglGetCurrentSurface</refname>
+    <refpurpose>
+      return the read or draw surface for the current <acronym>EGL</acronym> rendering context
+    </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>EGLSurface <function>eglGetCurrentSurface</function></funcdef>
+        <paramdef>EGLint <parameter>readdraw</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter>readdraw</parameter></term>
+        <listitem>
+          <para>
+            Specifies whether the <acronym>EGL</acronym> read or draw surface
+            is to be returned.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>
+      <function>eglGetCurrentSurface</function> returns the read or draw
+      surface attached to the current
+      <acronym>EGL</acronym> rendering context, as specified by
+      <citerefentry><refentrytitle>eglMakeCurrent</refentrytitle></citerefentry>.
+      If no context is current, <constant>EGL_NO_SURFACE</constant> is returned.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+      <citerefentry><refentrytitle>eglCreatePbufferSurface</refentrytitle></citerefentry>,
+      <citerefentry><refentrytitle>eglCreatePixmapSurface</refentrytitle></citerefentry>,
+      <citerefentry><refentrytitle>eglCreateWindowSurface</refentrytitle></citerefentry>,
+      <citerefentry><refentrytitle>eglMakeCurrent</refentrytitle></citerefentry>    </para>
+  </refsect1>
+
+</refentry>

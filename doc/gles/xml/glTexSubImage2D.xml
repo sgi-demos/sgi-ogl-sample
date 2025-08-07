@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glTexSubImage2D">
+  <refmeta>
+    <refentrytitle>glTexSubImage2D</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>glTexSubImage2D</refname>
+    <refpurpose>specify a two-dimensional texture subimage</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glTexSubImage2D</function></funcdef>
+        <paramdef>GLenum <parameter>target</parameter></paramdef>
+        <paramdef>GLint <parameter>level</parameter></paramdef>
+        <paramdef>GLint <parameter>xoffset</parameter></paramdef>
+        <paramdef>GLint <parameter>yoffset</parameter></paramdef>
+        <paramdef>GLsizei <parameter>width</parameter></paramdef>
+        <paramdef>GLsizei <parameter>height</parameter></paramdef>
+        <paramdef>GLenum <parameter>format</parameter></paramdef>
+        <paramdef>GLenum <parameter>type</parameter></paramdef>
+        <paramdef>const GLvoid * <parameter>pixels</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>target</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the target texture. Must be 
+          <constant>GL_TEXTURE_2D</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>level</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the level-of-detail number. Level 0 is
+          the base image level. Level <parameter>n</parameter> is the 
+          <parameter>n</parameter>th mipmap reduction image.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>xoffset</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies a texel offset in the x direction within
+          the texture array.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>yoffset</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies a texel offset in the y direction within
+          the texture array.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>width</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the width of the texture subimage.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>height</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the height of the texture subimage.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>format</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the of the pixel data. The following
+          symbolic values are accepted: 
+          <constant>GL_ALPHA</constant>, 
+          <constant>GL_RGB</constant>, 
+          <constant>GL_RGBA</constant>, 
+          <constant>GL_LUMINANCE</constant>, and 
+          <constant>GL_LUMINANCE_ALPHA</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>type</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the data type of the pixel data. The
+          following symbolic values are accepted: 
+          <constant>GL_UNSIGNED_BYTE</constant>, 
+          <constant>GL_UNSIGNED_SHORT_5_6_5</constant>, 
+          <constant>GL_UNSIGNED_SHORT_4_4_4_4</constant>, and 
+          <constant>GL_UNSIGNED_SHORT_5_5_5_1</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>pixels</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies a pointer to the image data in
+          memory.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>Texturing maps a portion of a specified texture image
+    onto each graphical primitive for which texturing is enabled.
+    To enable and disable two-dimensional texturing, call 
+    <citerefentry><refentrytitle>glEnable</refentrytitle></citerefentry> and 
+    <citerefentry><refentrytitle>glDisable</refentrytitle></citerefentry>
+    with argument <constant>GL_TEXTURE_2D</constant>.
+    Two-dimensional texturing is initially disabled.
+    </para>
+
+    <para>
+    <function>glTexSubImage2D</function>
+    redefines a contiguous subregion of an existing two-dimensional
+    texture image. The texels referenced by <parameter>pixels</parameter>
+    replace the portion of the existing texture array with x indices 
+    <parameter>xoffset</parameter> and 
+    <inlineequation><math>
+      <mi>xoffset</mi><mo>+</mo><mi>width</mi><mo>-</mo><mn>1</mn>
+    </math></inlineequation>,
+    inclusive, and y indices <parameter>yoffset</parameter> and 
+    <inlineequation><math>
+      <mi>yoffset</mi><mo>+</mo><mi>height</mi><mo>-</mo><mn>1</mn>
+    </math></inlineequation>,
+    inclusive. This region may not include any texels outside the
+    range of the texture array as it was originally specified. It
+    is not an error to specify a subtexture with zero width or
+    height, but such a specification has no effect.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Notes</title>
+
+    <para>
+    <citerefentry><refentrytitle>glPixelStore</refentrytitle></citerefentry>
+    affects texture images in exactly the way it affects
+    <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry>.
+    </para>
+
+    <para>
+    <function>glTexSubImage2D</function>
+    specifies a two-dimensional sub texture for the currently bound texture,
+    specified with
+    <citerefentry><refentrytitle>glBindTexture</refentrytitle></citerefentry>
+    and current texture
+    unit, specified with 
+    <citerefentry><refentrytitle>glActiveTexture</refentrytitle></citerefentry>.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>target</parameter> is not <constant>GL_TEXTURE_2D</constant>.
+    </para>
+
+    <para><constant>GL_INVALID_OPERATION</constant> 
+    is generated if the texture array has not been defined by a previous
+    <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry> or
+    <citerefentry><refentrytitle>glCopyTexImage2D</refentrytitle></citerefentry>
+    operation.</para>
+
+    <para><constant>GL_INVALID_VALUE</constant> is generated if 
+    <parameter>level</parameter> is less than 0.</para>
+
+    <para><constant>GL_INVALID_VALUE</constant> may be generated if 
+    <parameter>level</parameter> is greater than 
+    <inlineequation><math>
+      <msub><mo>log</mo><mn>2</mn></msub><mi>max</mi>
+    </math></inlineequation>, where
+    <replaceable>max</replaceable> is the returned value of
+    <constant>GL_MAX_TEXTURE_SIZE</constant>.</para>
+
+    <para><constant>GL_INVALID_VALUE</constant> is generated if
+    <inlineequation><math>
+      <mi>xoffset</mi><mo>&lt;</mo><mo>-</mo><mi>b</mi>
+    </math></inlineequation>,
+    <inlineequation><math>
+      <mi>xoffset</mi><mo>+</mo><mi>width</mi><mo>&gt;</mo>
+      <mfenced><mrow><mi>w</mi><mo>-</mo><mi>b</mi></mrow></mfenced>
+    </math></inlineequation>,
+    <inlineequation><math>
+      <mi>yoffset</mi><mo>&lt;</mo><mo>-</mo><mi>b</mi>
+    </math></inlineequation>, or
+    <inlineequation><math>
+      <mi>yoffset</mi><mo>+</mo><mi>height</mi><mo>&gt;</mo>
+      <mfenced><mrow><mi>h</mi><mo>-</mo><mi>b</mi></mrow></mfenced>
+    </math></inlineequation>, where
+    <replaceable>w</replaceable> is the texture width,
+    <replaceable>h</replaceable> is the texture height, and
+    <replaceable>b</replaceable> is the border of the texture
+    image being modified.
+    Note that <replaceable>w</replaceable> and <replaceable>h</replaceable>
+    include twice the border width.</para>
+
+    <para><constant>GL_INVALID_VALUE</constant> is generated if 
+    <parameter>width</parameter> or 
+    <parameter>height</parameter> is less than 0.</para>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>format</parameter> is not an accepted constant.</para>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>type</parameter> is not a type constant.</para>
+
+    <para><constant>GL_INVALID_OPERATION</constant> is generated if 
+    <parameter>type</parameter> is 
+    <constant>GL_UNSIGNED_SHORT_5_6_5</constant> and 
+    <parameter>format</parameter> is not 
+    <constant>GL_RGB</constant>.</para>
+
+    <para><constant>GL_INVALID_OPERATION</constant> is generated if 
+    <parameter>type</parameter> is one of 
+    <constant>GL_UNSIGNED_SHORT_4_4_4_4</constant>, or 
+    <constant>GL_UNSIGNED_SHORT_5_5_5_1</constant> and 
+    <parameter>format</parameter> is not 
+    <constant>GL_RGBA</constant>.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Associated Gets</title>
+
+    <para>
+    <citerefentry><refentrytitle>glGetInteger</refentrytitle></citerefentry>
+    with argument <constant>GL_MAX_TEXTURE_SIZE</constant></para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glActiveTexture</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glBindTexture</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCompressedTexSubImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCopyTexSubImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glGetInteger</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glPixelStore</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexEnv</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexParameter</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

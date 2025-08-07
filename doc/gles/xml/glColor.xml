@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glColor">
+  <refmeta>
+    <refentrytitle>glColor</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refdescriptor>glColor</refdescriptor>
+    <refname>glColor4f</refname>
+    <refname>glColor4x</refname>
+    <refpurpose>set the current color</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glColor4f</function></funcdef>
+        <paramdef>GLfloat <parameter>red</parameter></paramdef>
+        <paramdef>GLfloat <parameter>green</parameter></paramdef>
+        <paramdef>GLfloat <parameter>blue</parameter></paramdef>
+        <paramdef>GLfloat <parameter>alpha</parameter></paramdef>
+      </funcprototype>
+      <funcprototype>
+        <funcdef>void <function>glColor4x</function></funcdef>
+        <paramdef>GLfixed <parameter>red</parameter></paramdef>
+        <paramdef>GLfixed <parameter>green</parameter></paramdef>
+        <paramdef>GLfixed <parameter>blue</parameter></paramdef>
+        <paramdef>GLfixed <parameter>alpha</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+        <parameter>red</parameter>, 
+        <parameter>green</parameter>, 
+        <parameter>blue</parameter>,
+        <parameter>alpha</parameter>
+        </term> 
+        <listitem>
+          <para>Specify new red, green, blue, and alpha values for
+          the current color. The initial value is (1, 1, 1, 1).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>The GL stores a current four-valued RGBA color. 
+    <function>glColor</function> sets a new four-valued RGBA color.</para>
+
+    <para>Current color values are stored in fixed-point or
+    floating-point. In case the values are stored in
+    floating-point, the mantissa and exponent sizes are
+    unspecified.</para>
+
+    <para>Neither fixed-point nor floating-point values are clamped
+    to the range [0, 1] before the current color is updated.
+    However, color components are clamped to this range before they
+    are interpolated or written into the color buffer.</para>
+  </refsect1>
+
+<!--
+  <refsect1>
+    <title>Notes</title>
+
+    <para>The current color can be updated at any time.</para>
+  </refsect1>
+-->
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glColorPointer</refentrytitle></citerefentry>,
+    <citerefentry><refentrytitle>glNormal</refentrytitle></citerefentry>,
+    <citerefentry><refentrytitle>glMultiTexCoord</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

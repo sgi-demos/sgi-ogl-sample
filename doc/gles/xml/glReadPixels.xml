@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glReadPixels">
+  <refmeta>
+    <refentrytitle>glReadPixels</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>glReadPixels</refname>
+    <refpurpose>read a block of pixels from the color buffer</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glReadPixels</function></funcdef>
+        <paramdef>GLint <parameter>y</parameter></paramdef>
+        <paramdef>GLint <parameter>y</parameter></paramdef>
+        <paramdef>GLsizei <parameter>width</parameter></paramdef>
+        <paramdef>GLsizei <parameter>height</parameter></paramdef>
+        <paramdef>GLenum <parameter>format</parameter></paramdef>
+        <paramdef>GLenum <parameter>type</parameter></paramdef>
+        <paramdef>GLvoid * <parameter>pixels</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+        <parameter>x</parameter>, <parameter>y</parameter>
+        </term>
+
+        <listitem>
+          <para>Specify the window coordinates of the first pixel
+          that is read from the color buffer. This location is the
+          lower left corner of a rectangular block of pixels.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+        <parameter>width</parameter>, <parameter>height</parameter>
+        </term>
+
+        <listitem>
+          <para>Specify the dimensions of the pixel rectangle. 
+          <parameter>width</parameter> and <parameter>height</parameter>
+          of one correspond to a single pixel.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>format</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the format of the pixel data. Must be either
+          <constant>GL_RGBA</constant> or the value of
+          <constant>GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>type</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the data type of the pixel data. Must be either
+          <constant>GL_UNSIGNED_BYTE</constant> or the value of
+          <constant>GL_IMPLEMENTATION_COLOR_READ_TYPE_OES</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>pixels</parameter>
+        </term>
+
+        <listitem>
+          <para>Returns the pixel data.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para><function>glReadPixels</function>
+    returns pixel data from the color buffer, starting with the
+    pixel whose lower left corner is at location
+    (<parameter>x</parameter>, <parameter>y</parameter>),
+    into client memory starting at location 
+    <parameter>pixels</parameter>.
+    The processing of the pixel data before it is placed into
+    client memory can be controlled with 
+    <citerefentry><refentrytitle>glPixelStore</refentrytitle></citerefentry>.
+    </para>
+
+    <para><function>glReadPixels</function>
+    returns values from each pixel with lower left corner at
+    <inlineequation><math>
+      <mfenced>
+        <mrow><mi>x</mi><mo>+</mo><mi>i</mi></mrow>
+        <mrow><mi>y</mi><mo>+</mo><mi>j</mi></mrow>
+      </mfenced>
+    </math></inlineequation>
+    for
+    <inlineequation><math>
+      <mn>0</mn><mo>&lt;=</mo><mi>i</mi><mo>&lt;</mo><mi>width</mi>
+    </math></inlineequation>
+    and
+    <inlineequation><math>
+      <mn>0</mn><mo>&lt;=</mo><mi>j</mi><mo>&lt;</mo><mi>height</mi>
+    </math></inlineequation>.
+    This pixel is said to be the <replaceable>i</replaceable>th pixel
+    in the <replaceable>j</replaceable>th row.
+    Pixels are returned in row order from the lowest to the
+    highest row, left to right in each row.</para>
+
+    <para><parameter>format</parameter>
+    specifies the format of the returned pixel values.
+    <constant>GL_RGBA</constant> is always accepted,
+    the value of
+    <constant>GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES</constant> may allow
+    another format:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <constant>GL_RGBA</constant>
+        </term>
+
+        <listitem>
+          <para>Each color component is converted to floating point
+          such that zero intensity maps to 0 and full intensity
+          maps to 1.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_RGB</constant>
+        </term>
+
+        <listitem>
+          <para>Each element is an RGB triple.
+          The GL converts it to floating point and assembles it into an 
+          RGBA element by attaching 1 for alpha.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_LUMINANCE</constant>
+        </term>
+
+        <listitem>
+          <para>Each element is a single luminance value.
+          The GL converts it to floating point and assembles it into an 
+          RGBA element by replicating the luminance value three times for
+          red, green and blue and attaching 1 for alpha.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_LUMINANCE_ALPHA</constant>
+        </term>
+
+        <listitem>
+          <para>Each element is a luminance/alpha pair.
+          The GL converts it to floating point and assembles it into an 
+          RGBA element by replicating the luminance value three times for
+          red, green and blue.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_ALPHA</constant>
+        </term>
+
+        <listitem>
+          <para>Each element is a single alpha component.
+          The GL converts it to floating point and assembles it into an 
+          RGBA element by attaching 0 for red, green and blue.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Unneeded data is then discarded. For example, 
+    <constant>GL_ALPHA</constant>
+    discards the red, green, and blue components, while 
+    <constant>GL_RGB</constant>
+    discards only the alpha component. 
+    <constant>GL_LUMINANCE</constant>
+    computes a single-component value as the sum of the red, green,
+    and blue components, and 
+    <constant>GL_LUMINANCE_ALPHA</constant>
+    does the same, while keeping alpha as a second value. The final
+    values are clamped to the range [0, 1].</para>
+
+    <para>Finally, the components are converted to the proper, as
+    specified by <parameter>type</parameter> where each
+    component is multiplied by
+    <inlineequation><math>
+      <msup><mn>2</mn><mi>n</mi></msup><mo>-</mo><mn>1</mn>
+    </math></inlineequation>,
+    where <replaceable>n</replaceable> is the number of bits
+    per component.</para>
+
+    <para>Return values are placed in memory as follows. If 
+    <parameter>format</parameter> is 
+    <constant>GL_ALPHA</constant>, or 
+    <constant>GL_LUMINANCE</constant>,
+    a single value is returned and the data for the 
+    <replaceable>i</replaceable>th pixel in the
+    <replaceable>j</replaceable>th row is placed in location
+    <inlineequation><math>
+      <mi>j</mi><mo>*</mo><mi>width</mi><mo>+</mo><mi>i</mi>
+    </math></inlineequation>.
+    <constant>GL_RGB</constant> returns three values, 
+    <constant>GL_RGBA</constant> returns four values, and 
+    <constant>GL_LUMINANCE_ALPHA</constant>
+    returns two values for each pixel, with all values
+    corresponding to a single pixel occupying contiguous space in 
+    <parameter>pixels</parameter>.
+    Storage parameter <constant>GL_PACK_ALIGNMENT</constant> set by 
+    <citerefentry><refentrytitle>glPixelStore</refentrytitle></citerefentry>,
+    affects the way that data is written into memory. See 
+    <citerefentry><refentrytitle>glPixelStore</refentrytitle></citerefentry>
+    for a description.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Notes</title>
+
+    <para>Values for pixels that lie outside the window connected
+    to the current GL context are undefined.</para>
+
+    <para>If an error is generated, no change is made to the
+    contents of <parameter>pixels</parameter>.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>format</parameter> is not
+    <constant>GL_RGBA</constant> or the value of
+    <constant>GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES</constant>.</para>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>type</parameter> is not
+    <constant>GL_UNSIGNED_BYTE</constant> or the value of
+    <constant>GL_IMPLEMENTATION_COLOR_READ_TYPE_OES</constant>.</para>
+
+    <para><constant>GL_INVALID_VALUE</constant> is generated if either 
+    <parameter>width</parameter> or 
+    <parameter>height</parameter> is negative.</para>
+
+    <para>
+    <constant>GL_INVALID_OPERATION</constant> is generated if 
+    <parameter>format</parameter> and <parameter>type</parameter>
+    are neither
+    (<constant>GL_RGBA</constant>, <constant>GL_UNSIGNED_BYTE</constant>)
+    nor the values of
+    (<constant>GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES</constant>,
+    <constant>GL_IMPLEMENTATION_COLOR_READ_TYPE_OES</constant>).</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Associated Gets</title>
+
+    <para>
+    <citerefentry><refentrytitle>glGetInteger</refentrytitle></citerefentry>
+    with argument <constant>GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES</constant></para>
+
+    <para>
+    <citerefentry><refentrytitle>glGetInteger</refentrytitle></citerefentry>
+    with argument <constant>GL_IMPLEMENTATION_COLOR_READ_TYPE_OES</constant></para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+      <citerefentry><refentrytitle>glGetInteger</refentrytitle></citerefentry>,
+      <citerefentry><refentrytitle>glPixelStore</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

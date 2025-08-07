@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glMultiTexCoord">
+  <refmeta>
+    <refentrytitle>glMultiTexCoord</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refdescriptor>glMultiTexCoord</refdescriptor>
+    <refname>glMultiTexCoord4f</refname>
+    <refname>glMultiTexCoord4x</refname>
+    <refpurpose>set the current texture coordinates</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glMultiTexCoord4f</function></funcdef>
+        <paramdef>GLenum <parameter>target</parameter></paramdef>
+        <paramdef>GLfloat <parameter>s</parameter></paramdef>
+        <paramdef>GLfloat <parameter>t</parameter></paramdef>
+        <paramdef>GLfloat <parameter>r</parameter></paramdef>
+        <paramdef>GLfloat <parameter>q</parameter></paramdef>
+      </funcprototype>
+      <funcprototype>
+        <funcdef>void <function>glMultiTexCoord4x</function></funcdef>
+        <paramdef>GLenum <parameter>target</parameter></paramdef>
+        <paramdef>GLfixed <parameter>s</parameter></paramdef>
+        <paramdef>GLfixed <parameter>t</parameter></paramdef>
+        <paramdef>GLfixed <parameter>r</parameter></paramdef>
+        <paramdef>GLfixed <parameter>q</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>target</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies texture unit whose coordinates should be
+          modified. The number of texture units is implementation
+          dependent, but must be at least one. Must be one of 
+          <constant>GL_TEXTURE</constant><replaceable>i</replaceable>,
+          where
+          <inlineequation><math>
+            <mn>0</mn>
+            <mo>&lt;=</mo>
+            <mi>i</mi>
+            <mo>&lt;</mo>
+            <mi>GL_MAX_TEXTURE_UNITS</mi>
+          </math></inlineequation>,
+          which is an implementation-dependent value.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+        <parameter>s</parameter>, 
+        <parameter>t</parameter>, 
+        <parameter>r</parameter>, 
+        <parameter>q</parameter>
+        </term>
+
+        <listitem>
+          <para>Specify 
+          <parameter>s</parameter>, 
+          <parameter>t</parameter>, 
+          <parameter>r</parameter>, and 
+          <parameter>q</parameter> texture coordinates for 
+          <parameter>target</parameter> texture unit.
+          The initial value is (0, 0, 0, 1).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>
+    <function>glMultiTexCoord</function>
+    specifies the four texture coordinates as
+    (<parameter>s</parameter>,
+    <parameter>t</parameter>,
+    <parameter>r</parameter>,
+    <parameter>q</parameter>).</para>
+
+    <para>The current texture coordinates are part of the data that
+    is associated with each vertex.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Notes</title>
+<!--
+    <para>The current texture coordinates can be updated at any time.</para>
+-->
+
+    <para>It is always the case that 
+    <inlineequation><math>
+      <mi>GL_TEXTURE</mi><mi>i</mi> <mo>=</mo>
+      <mi>GL_TEXTURE0</mi><mo>+</mo><mi>i</mi>
+    </math></inlineequation>.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Associated Gets</title>
+
+    <para>
+    <citerefentry><refentrytitle>glGetInteger</refentrytitle></citerefentry>
+    with argument <constant>GL_MAX_TEXTURE_UNITS</constant>
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glActiveTexture</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glClientActiveTexture</refentrytitle></citerefentry>,
+    <citerefentry><refentrytitle>glColor</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glGetInteger</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glNormal</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexCoordPointer</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

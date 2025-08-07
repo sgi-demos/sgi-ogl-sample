@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glPixelStore">
+  <refmeta>
+    <refentrytitle>glPixelStore</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refdescriptor>glPixelStore</refdescriptor>
+    <refname>glPixelStorei</refname>
+    <refpurpose>set pixel storage modes</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glPixelStorei</function></funcdef>
+        <paramdef>GLenum <parameter>pname</parameter></paramdef>
+        <paramdef>GLint <parameter>param</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>pname</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the symbolic name of the parameter to be set. 
+          <constant>GL_PACK_ALIGNMENT</constant>
+          affects the packing of pixel data into memory. 
+          <constant>GL_UNPACK_ALIGNMENT</constant>
+          affects the unpacking of pixel data 
+          <parameter>from</parameter> memory.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>param</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the value that <parameter>pname</parameter>
+          is set to.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para> <function>glPixelStore</function>
+    sets pixel storage modes that affect the operation of
+    subsequent 
+    <citerefentry><refentrytitle>glReadPixels</refentrytitle></citerefentry>
+    as well as the unpacking of 
+    <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry>,
+    and 
+    <citerefentry><refentrytitle>glTexSubImage2D</refentrytitle></citerefentry>.
+    </para>
+
+    <para><parameter>pname</parameter>
+    is a symbolic constant indicating the parameter to be set, and 
+    <parameter>param</parameter>
+    is the new value. The following storage parameter affects how
+    pixel data is returned to client memory. This value is
+    significant for 
+    <citerefentry><refentrytitle>glReadPixels</refentrytitle></citerefentry>:
+    </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <constant>GL_PACK_ALIGNMENT</constant>
+        </term>
+
+        <listitem>
+          <para>Specifies the alignment requirements for the start
+          of each pixel row in memory. The allowable values are 1
+          (byte-alignment), 2 (rows aligned to even-numbered
+          bytes), 4 (word-alignment), and 8 (rows start on
+          double-word boundaries). The initial value is 4.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The following storage parameter affects how pixel data is
+    read from client memory. This value is significant for 
+    <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry>
+    and 
+    <citerefentry><refentrytitle>glTexSubImage2D</refentrytitle></citerefentry>:
+    </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <constant>GL_UNPACK_ALIGNMENT</constant>
+        </term>
+
+        <listitem>
+          <para>Specifies the alignment requirements for the start
+          of each pixel row in memory. The allowable values are 1
+          (byte-alignment), 2 (rows aligned to even-numbered
+          bytes), 4 (word-alignment), and 8 (rows start on
+          double-word boundaries). The initial value is 4.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+<!--
+    <para>The following table gives the type, initial value, and
+    range of valid values for each storage parameter that can be
+    set with 
+    <function>glPixelStore</function>.
+    </para>
+
+    <informaltable frame="none">
+      <tgroup cols="4" align="center">
+        <colspec />
+        <colspec align="left"/>
+        <colspec align="center"/>
+        <colspec align="center"/>
+        <colspec align="center"/>
+
+        <thead>
+          <row>
+            <entry><parameter>pname</parameter></entry>
+            <entry>Type</entry>
+            <entry>Initial Value</entry>
+            <entry>Valid Range</entry>
+          </row>
+        </thead>
+
+        <tbody>
+          <row>
+            <entry><constant>GL_PACK_ALIGNMENT</constant></entry>
+            <entry>integer</entry>
+            <entry>4</entry>
+            <entry>1, 2, 4, or 8</entry>
+          </row>
+
+          <row>
+            <entry><constant>GL_UNPACK_ALIGNMENT</constant></entry>
+            <entry>integer</entry>
+            <entry>4</entry>
+            <entry>1, 2, 4, or 8</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+-->
+  </refsect1>
+
+  <refsect1>
+    <title>Notes</title>
+
+    <para>Pixel storage modes are client states.</para>
+
+    <para>
+    <citerefentry><refentrytitle>glCompressedTexImage2D</refentrytitle></citerefentry>
+    and 
+    <citerefentry><refentrytitle>glCompressedTexSubImage2D</refentrytitle></citerefentry>
+    are not affected by <function>glPixelStore</function>.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>pname</parameter> is not an accepted value.</para>
+
+    <para><constant>GL_INVALID_VALUE</constant> 
+    is generated if alignment is specified as other than 1, 2, 4, or 8.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glReadPixels</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCompressedTexImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCompressedTexSubImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexSubImage2D</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

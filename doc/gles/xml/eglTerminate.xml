@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="eglTerminate">
+
+  <refmeta>
+    <refentrytitle>eglTerminate</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>eglTerminate</refname>
+    <refpurpose>
+      terminate an <acronym>EGL</acronym> display connection
+    </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>EGLBoolean <function>eglTerminate</function></funcdef>
+        <paramdef>EGLDisplay <parameter>display</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter>display</parameter></term>
+        <listitem>
+          <para>
+            Specifies the EGL display connection to terminate.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>
+      <function>eglTerminate</function> releases resources associated with
+      an EGL display connection. Termination marks all EGL resources associated
+      with the EGL display connection for deletion. If contexts or surfaces
+      associated with <parameter>display</parameter> is current to any thread,
+      they are not released until they are no longer current as a result of
+      <citerefentry><refentrytitle>eglMakeCurrent</refentrytitle></citerefentry>.
+    </para>
+
+    <para>
+      Terminating an already terminated EGL display connection has no effect.
+      A terminated display may be re-initialized by calling
+      <citerefentry><refentrytitle>eglInitialize</refentrytitle></citerefentry>
+      again.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para>
+      <constant>EGL_FALSE</constant> is returned if
+      <function>eglTerminate</function> fails,
+      <constant>EGL_TRUE</constant> otherwise.
+    </para>
+
+    <para>
+      <constant>EGL_BAD_DISPLAY</constant> is generated if
+      <parameter>display</parameter> is not an EGL display connection.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+      <citerefentry><refentrytitle>eglInitialize</refentrytitle></citerefentry>,
+      <citerefentry><refentrytitle>eglMakeCurrent</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+
+</refentry>

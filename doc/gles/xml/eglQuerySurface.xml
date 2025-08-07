@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="eglQuerySurface">
+
+  <refmeta>
+    <refentrytitle>eglQuerySurface</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>eglQuerySurface</refname>
+    <refpurpose>
+      return <acronym>EGL</acronym> surface information
+    </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>EGLBoolean <function>eglQuerySurface</function></funcdef>
+        <paramdef>EGLDisplay <parameter>display</parameter></paramdef>
+        <paramdef>EGLSurface <parameter>surface</parameter></paramdef>
+        <paramdef>EGLint <parameter>attribute</parameter></paramdef>
+        <paramdef>EGLint * <parameter>value</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter>display</parameter></term>
+        <listitem>
+          <para>
+            Specifies the EGL display connection.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>surface</parameter></term>
+        <listitem>
+          <para>
+            Specifies the EGL surface to query.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>attribute</parameter></term>
+        <listitem>
+          <para>
+            Specifies the EGL surface attribute to be returned.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>value</parameter></term>
+        <listitem>
+          <para>
+            Returns the requested value.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>
+      <function>eglQuerySurface</function> returns in
+      <parameter>value</parameter> the value of
+      <parameter>attribute</parameter> for <parameter>surface</parameter>.
+      <parameter>attribute</parameter> can be one of the following:
+    </para>
+
+    <variablelist>
+      <varlistentry>
+        <term><constant>EGL_CONFIG_ID</constant></term>
+        <listitem><para>
+          Returns the ID of the EGL frame buffer configuration with respect to
+          which the surface was created.
+        </para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><constant>EGL_WIDTH</constant></term>
+        <listitem><para>
+          Returns the width of the surface in pixels.
+        </para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><constant>EGL_HEIGHT</constant></term>
+        <listitem><para>
+          Returns the height of the surface in pixels.
+        </para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><constant>EGL_LARGEST_PBUFFER</constant></term>
+        <listitem><para>
+          Returns the same attribute value specified when the surface was
+          created with
+          <citerefentry><refentrytitle>eglCreatePbufferSurface</refentrytitle></citerefentry>.
+          For a window or pixmap surface, <parameter>value</parameter>
+          is not modified.
+        </para></listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para>
+      <constant>EGL_FALSE</constant> is returned on failure,
+      <constant>EGL_TRUE</constant> otherwise.
+      <parameter>value</parameter> is not modified when
+      <constant>EGL_FALSE</constant> is returned.
+    </para>
+
+    <para>
+      <constant>EGL_BAD_DISPLAY</constant> is generated if
+      <parameter>display</parameter> is not an EGL display connection.
+    </para>
+
+    <para>
+      <constant>EGL_NOT_INITIALIZED</constant> is generated if
+      <parameter>display</parameter> has not been initialized.
+    </para>
+
+    <para>
+      <constant>EGL_BAD_SURFACE</constant> is generated if
+      <parameter>surface</parameter> is not an EGL surface.
+    </para>
+
+    <para>
+      <constant>EGL_BAD_ATTRIBUTE</constant> is generated if
+      <parameter>attribute</parameter> is not a valid surface attribute.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+      <citerefentry><refentrytitle>eglCreatePbufferSurface</refentrytitle></citerefentry>,
+      <citerefentry><refentrytitle>eglCreatePixmapSurface</refentrytitle></citerefentry>,
+      <citerefentry><refentrytitle>eglCreateWindowSurface</refentrytitle></citerefentry>
+
+    </para>
+  </refsect1>
+
+</refentry>

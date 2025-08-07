@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glOrtho">
+  <refmeta>
+    <refentrytitle>glOrtho</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refdescriptor>glOrtho</refdescriptor>
+    <refname>glOrthof</refname>
+    <refname>glOrthox</refname>
+    <refpurpose>multiply the current matrix with an orthographic
+    matrix</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glOrthof</function></funcdef>
+        <paramdef>GLfloat <parameter>left</parameter></paramdef>
+        <paramdef>GLfloat <parameter>right</parameter></paramdef>
+        <paramdef>GLfloat <parameter>bottom</parameter></paramdef>
+        <paramdef>GLfloat <parameter>top</parameter></paramdef>
+        <paramdef>GLfloat <parameter>near</parameter></paramdef>
+        <paramdef>GLfloat <parameter>far</parameter></paramdef>
+      </funcprototype>
+      <funcprototype>
+        <funcdef>void <function>glOrthox</function></funcdef>
+        <paramdef>GLfixed <parameter>left</parameter></paramdef>
+        <paramdef>GLfixed <parameter>right</parameter></paramdef>
+        <paramdef>GLfixed <parameter>bottom</parameter></paramdef>
+        <paramdef>GLfixed <parameter>top</parameter></paramdef>
+        <paramdef>GLfixed <parameter>near</parameter></paramdef>
+        <paramdef>GLfixed <parameter>far</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+        <parameter>left</parameter>, 
+        <parameter>right</parameter>
+        </term>
+
+        <listitem>
+          <para>Specify the coordinates for the left and right
+          vertical clipping planes.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+        <parameter>bottom</parameter>, 
+        <parameter>top</parameter>
+        </term>
+
+        <listitem>
+          <para>Specify the coordinates for the bottom and top
+          horizontal clipping planes.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+        <parameter>near</parameter>, 
+        <parameter>far</parameter>
+        </term>
+
+        <listitem>
+          <para>Specify the distances to the nearer and farther
+          depth clipping planes. These values are negative if the
+          plane is to be behind the viewer.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para><function>glOrtho</function>
+    describes a transformation that produces a parallel projection.
+    The current matrix (see 
+    <citerefentry><refentrytitle>glMatrixMode</refentrytitle></citerefentry>)
+    is multiplied by this matrix and the result replaces the
+    current matrix, as if 
+    <citerefentry><refentrytitle>glMultMatrix</refentrytitle></citerefentry>
+    were called with the following matrix as its argument:</para>
+
+    <informalequation><math>
+      <mrow>
+        <mo>(</mo>
+        <mtable class="matrix">
+          <mtr>
+            <mtd>
+              <mfrac>
+                <mn>2</mn>
+                <mrow><mi>right</mi><mo>-</mo><mi>left</mi></mrow>
+              </mfrac>
+            </mtd>
+            <mtd><mn>0</mn></mtd>
+            <mtd><mn>0</mn></mtd>
+            <mtd><msub><mi>t</mi><mi>x</mi></msub></mtd>
+          </mtr>
+          <mtr>
+            <mtd><mn>0</mn></mtd>
+            <mtd>
+              <mfrac>
+                <mn>2</mn>
+                <mrow><mi>top</mi><mo>-</mo><mi>bottom</mi></mrow>
+              </mfrac>
+            </mtd>
+            <mtd><mn>0</mn></mtd>
+            <mtd><msub><mi>t</mi><mi>y</mi></msub></mtd>
+          </mtr>
+          <mtr>
+            <mtd><mn>0</mn></mtd>
+            <mtd><mn>0</mn></mtd>
+            <mtd>
+              <mfrac>
+                <mrow><mo>-</mo><mn>2</mn></mrow>
+                <mrow><mi>far</mi><mo>-</mo><mi>near</mi></mrow>
+              </mfrac>
+            </mtd>
+            <mtd><msub><mi>t</mi><mi>z</mi></msub></mtd>
+          </mtr>
+          <mtr>
+            <mtd><mn>0</mn></mtd>
+            <mtd><mn>0</mn></mtd>
+            <mtd><mn>0</mn></mtd>
+            <mtd><mn>1</mn></mtd>
+          </mtr>
+        </mtable>
+        <mo>)</mo>
+      </mrow>
+    </math></informalequation>
+
+    <para>where</para>
+
+    <informalequation><math><mtable>
+      <mtr><mtd>
+        <msub><mi>t</mi><mi>x</mi></msub>
+        <mgroupalign/>
+        <mo>=</mo>
+        <mgroupalign/>
+        <mo>-</mo>
+        <mfrac>
+          <mrow><mi>right</mi><mo>+</mo><mi>left</mi></mrow>
+          <mrow><mi>right</mi><mo>-</mo><mi>left</mi></mrow>
+        </mfrac>
+      </mtd></mtr>
+      <mtr><mtd>
+        <msub><mi>t</mi><mi>y</mi></msub>
+        <mgroupalign/>
+        <mo>=</mo>
+        <mgroupalign/>
+        <mo>-</mo>
+        <mfrac>
+          <mrow><mi>top</mi><mo>+</mo><mi>bottom</mi></mrow>
+          <mrow><mi>top</mi><mo>-</mo><mi>bottom</mi></mrow>
+        </mfrac>
+      </mtd></mtr>
+      <mtr><mtd>
+        <msub><mi>t</mi><mi>z</mi></msub>
+        <mgroupalign/>
+        <mo>=</mo>
+        <mgroupalign/>
+        <mo>-</mo>
+        <mfrac>
+          <mrow><mi>far</mi><mo>+</mo><mi>near</mi></mrow>
+          <mrow><mi>far</mi><mo>-</mo><mi>near</mi></mrow>
+        </mfrac>
+      </mtd></mtr>
+    </mtable></math></informalequation>
+
+    <para>Typically, the matrix mode is 
+    <constant>GL_PROJECTION</constant>, and
+    (<parameter>left</parameter>, <parameter>bottom</parameter>,
+    -<parameter>near</parameter>) and
+    (<parameter>right</parameter>, <parameter>top</parameter>,
+    -<parameter>near</parameter>) 
+    specify the points on the near clipping plane that are mapped
+    to the lower left and upper right corners of the window,
+    respectively, assuming that the eye is located at (0, 0, 0).
+    -<parameter>far</parameter>
+    specifies the location of the far clipping plane. Both 
+    <parameter>near</parameter> and <parameter>far</parameter> 
+    can be either positive or negative.</para>
+
+    <para>Use 
+    <citerefentry><refentrytitle>glPushMatrix</refentrytitle></citerefentry>
+    and 
+    <citerefentry><refentrytitle>glPopMatrix</refentrytitle></citerefentry>
+    to save and restore the current matrix stack.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glFrustum</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glMatrixMode</refentrytitle></citerefentry>,
+    <citerefentry><refentrytitle>glMultMatrix</refentrytitle></citerefentry>,
+    <citerefentry><refentrytitle>glPushMatrix</refentrytitle></citerefentry>,
+    <citerefentry><refentrytitle>glViewport</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="eglGetDisplay">
+
+  <refmeta>
+    <refentrytitle>eglGetDisplay</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>eglGetDisplay</refname>
+    <refpurpose>
+      return an <acronym>EGL</acronym> display connection
+    </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>EGLDisplay <function>eglGetDisplay</function></funcdef>
+        <paramdef>NativeDisplayType <parameter>native_display</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <term><parameter>native_display</parameter></term>
+      <listitem>
+        <para>
+          Specifies the display to connect to.
+          <constant>EGL_DEFAULT_DISPLAY</constant> indicates the default display.
+        </para>
+      </listitem>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>
+      <function>eglGetDisplay</function> obtains the
+      <acronym>EGL</acronym> display connection for the native
+      display <parameter>native_display</parameter>.
+    </para>
+
+    <para>
+      If <parameter>display_id</parameter> is
+      <constant>EGL_DEFAULT_DISPLAY</constant>, a default display connection is returned.
+    </para>
+
+    <para>
+      If no display connection matching <parameter>native_display</parameter> is
+      available, <constant>EGL_NO_DISPLAY</constant> is returned. No
+      error is generated.
+    </para>
+
+    <para>
+      Use <citerefentry><refentrytitle>eglInitialize</refentrytitle></citerefentry>
+      to initialize the display connection.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+      <citerefentry><refentrytitle>eglInitialize</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+
+</refentry>

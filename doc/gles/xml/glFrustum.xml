@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glFrustum">
+  <refmeta>
+    <refentrytitle>glFrustum</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refdescriptor>glFrustum</refdescriptor>
+    <refname>glFrustumf</refname>
+    <refname>glFrustumx</refname>
+    <refpurpose>multiply the current matrix by a perspective matrix</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glFrustumf</function></funcdef>
+        <paramdef>GLfloat <parameter>left</parameter></paramdef>
+        <paramdef>GLfloat <parameter>right</parameter></paramdef>
+        <paramdef>GLfloat <parameter>bottom</parameter></paramdef>
+        <paramdef>GLfloat <parameter>top</parameter></paramdef>
+        <paramdef>GLfloat <parameter>near</parameter></paramdef>
+        <paramdef>GLfloat <parameter>far</parameter></paramdef>
+      </funcprototype>
+      <funcprototype>
+        <funcdef>void <function>glFrustumx</function></funcdef>
+        <paramdef>GLfixed <parameter>left</parameter></paramdef>
+        <paramdef>GLfixed <parameter>right</parameter></paramdef>
+        <paramdef>GLfixed <parameter>bottom</parameter></paramdef>
+        <paramdef>GLfixed <parameter>top</parameter></paramdef>
+        <paramdef>GLfixed <parameter>near</parameter></paramdef>
+        <paramdef>GLfixed <parameter>far</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+        <parameter>left</parameter>, 
+        <parameter>right</parameter>
+        </term>
+
+        <listitem>
+          <para>Specify the coordinates for the left and right
+          vertical clipping planes.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+        <parameter>bottom</parameter>, 
+        <parameter>top</parameter>
+        </term>
+
+        <listitem>
+          <para>Specify the coordinates for the bottom and top
+          horizontal clipping planes.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+        <parameter>near</parameter>, 
+        <parameter>far</parameter>
+        </term>
+
+        <listitem>
+          <para>Specify the distances to the near and far depth
+          clipping planes. Both distances must be positive.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para><function>glFrustum</function>
+    describes a perspective matrix that produces a perspective
+    projection. The current matrix (see 
+    <citerefentry><refentrytitle>glMatrixMode</refentrytitle></citerefentry>)
+    is multiplied by this matrix and the result replaces the
+    current matrix, as if 
+    <citerefentry><refentrytitle>glMultMatrix</refentrytitle></citerefentry>
+    were called with the following matrix as its argument:</para>
+
+
+    <informalequation><math>
+      <mrow>
+        <mo>(</mo>
+        <mtable class="matrix">
+          <mtr>
+            <mtd>
+              <mfrac>
+                <mn>2</mn>
+                <mrow><mi>right</mi><mo>-</mo><mi>left</mi></mrow>
+              </mfrac>
+            </mtd>
+            <mtd><mn>0</mn></mtd>
+            <mtd><mi>A</mi></mtd>
+            <mtd><mn>0</mn></mtd>
+          </mtr>
+          <mtr>
+            <mtd><mn>0</mn></mtd>
+            <mtd>
+              <mfrac>
+                <mn>2</mn>
+                <mrow><mi>top</mi><mo>-</mo><mi>bottom</mi></mrow>
+              </mfrac>
+            </mtd>
+            <mtd><mi>B</mi></mtd>
+            <mtd><mn>0</mn></mtd>
+          </mtr>
+          <mtr>
+            <mtd><mn>0</mn></mtd>
+            <mtd><mn>0</mn></mtd>
+            <mtd><mi>C</mi></mtd>
+            <mtd><mi>D</mi></mtd>
+          </mtr>
+          <mtr>
+            <mtd><mn>0</mn></mtd>
+            <mtd><mn>0</mn></mtd>
+            <mtd><mo>-</mo><mn>1</mn></mtd>
+            <mtd><mn>0</mn></mtd>
+          </mtr>
+        </mtable>
+        <mo>)</mo>
+      </mrow>
+    </math></informalequation>
+
+    <para>where</para>
+
+    <informalequation><math><mtable>
+      <mtr><mtd>
+        <mi>A</mi>
+        <mgroupalign/>
+        <mo>=</mo>
+        <mgroupalign/>
+        <mo>-</mo>
+        <mfrac>
+          <mrow><mi>right</mi><mo>+</mo><mi>left</mi></mrow>
+          <mrow><mi>right</mi><mo>-</mo><mi>left</mi></mrow>
+        </mfrac>
+      </mtd></mtr>
+      <mtr><mtd>
+        <mi>B</mi>
+        <mgroupalign/>
+        <mo>=</mo>
+        <mgroupalign/>
+        <mo>-</mo>
+        <mfrac>
+          <mrow><mi>top</mi><mo>+</mo><mi>bottom</mi></mrow>
+          <mrow><mi>top</mi><mo>-</mo><mi>bottom</mi></mrow>
+        </mfrac>
+      </mtd></mtr>
+      <mtr><mtd>
+        <mi>C</mi>
+        <mgroupalign/>
+        <mo>=</mo>
+        <mgroupalign/>
+        <mo>-</mo>
+        <mfrac>
+          <mrow><mi>far</mi><mo>+</mo><mi>near</mi></mrow>
+          <mrow><mi>far</mi><mo>-</mo><mi>near</mi></mrow>
+        </mfrac>
+      </mtd></mtr>
+      <mtr><mtd>
+        <mi>D</mi>
+        <mgroupalign/>
+        <mo>=</mo>
+        <mgroupalign/>
+        <mo>-</mo>
+        <mfrac>
+          <mrow><mn>2</mn><mi>far</mi><mi>near</mi></mrow>
+          <mrow><mi>far</mi><mo>-</mo><mi>near</mi></mrow>
+        </mfrac>
+      </mtd></mtr>
+    </mtable></math></informalequation>
+
+    <para>Typically, the matrix mode is 
+    <constant>GL_PROJECTION</constant>, and
+    (<parameter>left</parameter>, <parameter>bottom</parameter>,
+    -<parameter>near</parameter>) and
+    (<parameter>right</parameter>, <parameter>top</parameter>,
+    -<parameter>near</parameter>)
+    specify the points on the near clipping plane that are mapped
+    to the lower left and upper right corners of the window,
+    assuming that the eye is located at (0, 0, 0).
+    -<parameter>far</parameter>
+    specifies the location of the far clipping plane. Both 
+    <parameter>near</parameter> and 
+    <parameter>far</parameter> must be positive.</para>
+
+    <para>Use 
+    <citerefentry><refentrytitle>glPushMatrix</refentrytitle></citerefentry>
+    and 
+    <citerefentry><refentrytitle>glPopMatrix</refentrytitle></citerefentry>
+    to save and restore the current matrix stack.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Notes</title>
+
+    <para>Depth buffer precision is affected by the values
+    specified for <parameter>near</parameter> and 
+    <parameter>far</parameter>. The greater the ratio of 
+    <parameter>far</parameter> to 
+    <parameter>near</parameter> 
+    is, the less effective the depth buffer will be at
+    distinguishing between surfaces that are near each other. If</para>
+
+    <informalequation><math><mtable>
+      <mtr><mtd>
+        <mi>r</mi>
+        <mo>=</mo>
+        <mfrac><mi>far</mi><mi>near</mi></mfrac>
+      </mtd></mtr>
+    </mtable></math></informalequation>
+
+    <para>roughly
+    <inlineequation><math>
+      <msub><mo>log</mo><mn>2</mn></msub><mo>(</mo><mi>r</mi><mo>)</mo>
+    </math></inlineequation>
+    bits of depth buffer precision are lost. Because
+    <replaceable>r</replaceable> approaches infinity as 
+    <parameter>near</parameter> approaches 0, 
+    <parameter>near</parameter> must never be set to 0.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para>
+      <constant>GL_INVALID_VALUE</constant> is generated if 
+      <parameter>near</parameter> or <parameter>far</parameter>
+      is not positive, or if 
+      <parameter>left</parameter> = <parameter>right</parameter>, or 
+      <parameter>bottom</parameter> = <parameter>top</parameter>.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+      <citerefentry><refentrytitle>glOrtho</refentrytitle></citerefentry>, 
+      <citerefentry><refentrytitle>glMatrixMode</refentrytitle></citerefentry>, 
+      <citerefentry><refentrytitle>glMultMatrix</refentrytitle></citerefentry>, 
+      <citerefentry><refentrytitle>glPushMatrix</refentrytitle></citerefentry>, 
+      <citerefentry><refentrytitle>glViewport</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

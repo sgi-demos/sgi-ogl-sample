@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glClientActiveTexture">
+  <refmeta>
+    <refentrytitle>glClientActiveTexture</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>glClientActiveTexture</refname>
+    <refpurpose>select client-side active texture unit</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glClientActiveTexture</function></funcdef>
+        <paramdef>GLenum <parameter>texture</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>texture</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies which texture unit to make active. The
+          number of texture units is implementation dependent, but
+          must be at least one.  <parameter>texture</parameter>
+          must be one of
+          <constant>GL_TEXTURE</constant><replaceable>i</replaceable>,
+          <inlineequation><math>
+            <mn>0</mn>
+            <mo>&lt;=</mo>
+            <mi>i</mi>
+            <mo>&lt;</mo>
+            <mi>GL_MAX_TEXTURE_UNITS</mi>
+          </math></inlineequation>,
+          which is an implementation-dependent value. The initial
+          value is <constant>GL_TEXTURE0</constant>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>
+    <function>glClientActiveTexture</function>
+    selects the vertex array client state parameters to be modified
+    by 
+    <citerefentry><refentrytitle>glTexCoordPointer</refentrytitle></citerefentry>,
+    and enabled or disabled with 
+    <citerefentry><refentrytitle>glEnableClientState</refentrytitle></citerefentry>
+    or 
+    <citerefentry><refentrytitle>glDisableClientState</refentrytitle></citerefentry>,
+    respectively, when called with a parameter of 
+    <constant>GL_TEXTURE_COORD_ARRAY</constant>.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para>
+    <constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>texture</parameter> is not one of 
+      <constant>GL_TEXTURE</constant><replaceable>i</replaceable>,
+      where
+      <inlineequation><math>
+        <mn>0</mn>
+        <mo>&lt;=</mo>
+        <mi>i</mi>
+        <mo>&lt;</mo>
+        <mi>GL_MAX_TEXTURE_UNITS</mi>
+      </math></inlineequation>.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Notes</title>
+
+    <para>It is always the case that
+    <inlineequation><math>
+      <mi>GL_TEXTURE</mi><mi>i</mi> <mo>=</mo>
+      <mi>GL_TEXTURE0</mi><mo>+</mo><mi>i</mi>
+    </math></inlineequation>.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Associated Gets</title>
+
+    <para>
+    <citerefentry><refentrytitle>glGetInteger</refentrytitle></citerefentry>
+    with argument <constant>GL_MAX_TEXTURE_UNITS</constant>
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glActiveTexture</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glEnableClientState</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glGetInteger</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glMultiTexCoord</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexCoordPointer</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

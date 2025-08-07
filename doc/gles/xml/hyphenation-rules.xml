@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<foo>
+  gl-Ac-tive-Tex-ture
+  gl-Al-pha-Func
+  gl-Bind-Tex-ture
+  gl-Blend-Func
+  gl-Clear
+  gl-Clear-Color
+  gl-Clear-Depth
+  gl-Clear-Sten-cil
+  gl-Client-Ac-tive-Tex-ture
+  gl-Com-pressed-Tex-Im-age % 2D
+  gl-Com-pressed-Tex-Sub-Im-age % 2D
+  gl-Copy-Tex-Im-age % 2D
+  gl-Copy-Tex-Sub-Im-age % 2D
+  gl-Color
+  gl-Color-Mask
+  gl-Color-Pointer
+  gl-Cull-Face
+  gl-Delete-Tex-tures
+  gl-Depth-Func
+  gl-Depth-Mask
+  gl-Depth-Range
+  gl-Disable
+  gl-Disable-Client-State
+  gl-Draw-Ar-rays
+  gl-Draw-El-e-ments
+  gl-En-able
+  gl-En-able-Client-State
+  gl-Fin-ish
+  gl-Flush
+  gl-Fog
+  gl-Front-Face
+  gl-Frus-tum
+  gl-Gen-Tex-tures
+  gl-Get-Er-ror
+  gl-Get-In-te-ger
+  gl-Get-String
+  gl-Hint
+  gl-Light-Model
+  gl-Light
+  gl-Line-Width
+  gl-Load-Iden-tity
+  gl-Load-Ma-trix
+  gl-Logic-Op
+  gl-Ma-te-rial
+  gl-Ma-trix-Mode
+  gl-Mult-Ma-trix
+  gl-Multi-Tex-Coord
+  gl-Nor-mal
+  gl-Nor-mal-Pointer
+  gl-Or-tho
+  gl-Pixel-Store
+  gl-Point-Size
+  gl-Poly-gon-Off-set
+  gl-Pop-Ma-trix
+  gl-Push-Ma-trix
+  gl-Query-Ma-trix
+  gl-Read-Pix-els
+  gl-Ro-tate
+  gl-Sample-Cov-er-age
+  gl-Scale
+  gl-Scis-sor
+  gl-Shade-Model
+  gl-Sten-cil-Func
+  gl-Sten-cil-Mask
+  gl-Sten-cil-Op
+  gl-Tex-Co-ord-Pointer
+  gl-Tex-Env
+  gl-Tex-Im-age % 2D
+  gl-Tex-Pa-ram-e-ter
+  gl-Tex-Sub-Im-age % 2D
+  gl-Trans-late
+  gl-Ver-tex-Pointer
+  gl-View-port
+  egl-Choose-Con-fig
+  egl-Copy-Buffers
+  egl-Cre-ate-Con-text
+  egl-Cre-ate-Pbuffer-Sur-face
+  egl-Cre-ate-Pix-map-Sur-face
+  egl-Cre-ate-Win-dow-Sur-face
+  egl-De-stroy-Con-text
+  egl-De-stroy-Sur-face
+  egl-Get-Con-fig-At-trib
+  egl-Get-Con-figs
+  egl-Get-Cur-rent-Con-text
+  egl-Get-Cur-rent-Dis-play
+  egl-Get-Cur-rent-Sur-face
+  egl-Get-Dis-play
+  egl-Get-Er-ror
+  egl-Get-Proc-Ad-dress
+  egl-Ini-tial-ize
+  egl-Int-ro
+  egl-Make-Cur-rent
+  egl-Query-Con-text
+  egl-Query-String
+  egl-Query-Sur-face
+  egl-Swap-Buffers
+  egl-Ter-mi-nate
+  egl-Wait-GL
+  egl-Wait-Na-tive
+</foo>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glCompressedTexImage2D">
+  <refmeta>
+    <refentrytitle>glCompressedTexImage2D</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>glCompressedTexImage2D</refname>
+    <refpurpose>specify a two-dimensional compressed texture image</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glCompressedTexImage2D</function></funcdef>
+        <paramdef>GLenum <parameter>target</parameter></paramdef>
+        <paramdef>GLint <parameter>level</parameter></paramdef>
+        <paramdef>GLint <parameter>internalformat</parameter></paramdef>
+        <paramdef>GLsizei <parameter>width</parameter></paramdef>
+        <paramdef>GLsizei <parameter>height</parameter></paramdef>
+        <paramdef>GLint <parameter>border</parameter></paramdef>
+        <paramdef>GLsizei <parameter>imageSize</parameter></paramdef>
+        <paramdef>const GLvoid * <parameter>data</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>target</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the target texture. Must be 
+          <constant>GL_TEXTURE_2D</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>level</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the level-of-detail number. Must be less than
+	  or equal to 0.
+          Level 0 indicates a single mip-level. Negative values indicate
+          how many mip-levels are described by <parameter>data</parameter>.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>internalformat</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the color components in the
+          texture. The following symbolic constants are accepted:
+          <constant>GL_PALETTE4_RGB8_OES</constant>,
+          <constant>GL_PALETTE4_RGBA8_OES</constant>,
+          <constant>GL_PALETTE4_R5_G6_B5_OES</constant>,
+          <constant>GL_PALETTE4_RGBA4_OES</constant>,
+          <constant>GL_PALETTE4_RGB5_A1_OES</constant>,
+          <constant>GL_PALETTE8_RGB8_OES</constant>,
+          <constant>GL_PALETTE8_RGBA8_OES</constant>,
+          <constant>GL_PALETTE8_R5_G6_B5_OES</constant>,
+          <constant>GL_PALETTE8_RGBA4_OES</constant>, and
+          <constant>GL_PALETTE8_RGB5_A1_OES</constant>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>width</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the width of the texture image. Must be 
+          <inlineequation><math>
+            <msup><mn>2</mn><mi>n</mi></msup><mo>+</mo><mn>2</mn><mi>border</mi>
+          </math></inlineequation>
+          for some integer <replaceable>n</replaceable>.
+          All implementations support texture images that are at
+          least 64 texels wide.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>height</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the height of the texture image. Must be 
+          <inlineequation><math>
+            <msup><mn>2</mn><mi>m</mi></msup><mo>+</mo><mn>2</mn><mi>border</mi>
+          </math></inlineequation>
+          for some integer <replaceable>m</replaceable>.
+          All implementations support texture images that are at
+          least 64 texels high.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>border</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the width of the border. Must be 0.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>imageSize</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the size of the compressed image data in bytes.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>data</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies a pointer to the compressed image data in memory.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>
+    <function>glCompressedTexImage2D</function> defines a two-dimensional
+    texture image in compressed format.</para>
+
+    <para>The supported compressed formats are paletted textures. 
+    The layout of the compressed image is a
+    palette followed by multiple mip-levels of
+    texture indices used for lookup into the palette.
+    The palette format can be one of
+    <constant>R5_G6_B5</constant>, 
+    <constant>RGBA4</constant>, 
+    <constant>RGB5_A1</constant>, 
+    <constant>RGB8</constant>, or
+    <constant>RGBA8</constant>.
+    The texture indices can have a resolution of 4 or 8 bits.
+    As a result, the number of palette entries is either
+    16 or 256. If <parameter>level</parameter> is 0, only one mip-level
+    of texture indices is described in <parameter>data</parameter>. Otherwise,
+    the negative value of <parameter>level</parameter>
+    specifies up to which mip-level the texture indices are described.
+    A possibly remaining pad nibble for the lowest resolution
+    mip-level is ignored.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Notes</title>
+
+    <para><citerefentry><refentrytitle>glPixelStore</refentrytitle></citerefentry>
+    has no effect on compressed texture images.</para>
+
+    <para><function>glCompressedTexImage2D</function>
+    specifies the two-dimensional texture for the currently bound texture,
+    specified with
+    <citerefentry><refentrytitle>glBindTexture</refentrytitle></citerefentry>,
+    and the current texture
+    unit, specified with 
+    <citerefentry><refentrytitle>glActiveTexture</refentrytitle></citerefentry>.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>target</parameter> is not 
+    <constant>GL_TEXTURE_2D</constant>.</para>
+
+    <para><constant>GL_INVALID_VALUE</constant> may be generated if 
+    if <parameter>level</parameter> is greater than 0 or the
+    absolute value of <parameter>level</parameter> is greater than
+    <inlineequation><math>
+      <msub><mo>log</mo><mn>2</mn></msub><mi>max</mi>
+    </math></inlineequation>, where 
+    <parameter>max</parameter> is the returned value of 
+    <constant>GL_MAX_TEXTURE_SIZE</constant>.</para>
+
+    <para><constant>GL_INVALID_VALUE</constant>is generated if 
+    <parameter>internalformat</parameter> 
+    is not one of the accepted symbolic constants.</para>
+
+    <para><constant>GL_INVALID_VALUE</constant> is generated if 
+    <parameter>width</parameter> or 
+    <parameter>height</parameter> 
+    is less than 0 or greater than 2 + 
+    <constant>GL_MAX_TEXTURE_SIZE</constant>,
+    or if either cannot be represented as 
+    <inlineequation><math>
+      <msup><mn>2</mn><mi>k</mi></msup><mo>+</mo><mn>2</mn><mi>border</mi>
+    </math></inlineequation>
+    for some integer <replaceable>k</replaceable>.</para>
+
+    <para><constant>GL_INVALID_VALUE</constant>is generated if 
+    <parameter>border</parameter> is not 0.</para>
+
+    <para><constant>GL_INVALID_VALUE</constant>is generated if 
+    <parameter>imageSize</parameter> is not consistent
+    with format, dimentions, and contents of the compressed image.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glActiveTexture</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glBindTexture</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCompressedTexSubImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCopyTexImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCopyTexSubImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glPixelStore</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexEnv</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexParameter</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

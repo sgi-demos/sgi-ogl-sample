@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glClearStencil">
+  <refmeta>
+    <refentrytitle>glClearStencil</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>glClearStencil</refname>
+    <refpurpose>specify the clear value for the stencil buffer</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glClearStencil</function></funcdef>
+        <paramdef>GLint <parameter>s</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>s</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies the index used when the stencil buffer is
+          cleared. The initial value is 0.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para><function>glClearStencil</function>
+    specifies the index used by 
+    <citerefentry><refentrytitle>glClear</refentrytitle></citerefentry>
+    to clear the stencil buffer.  <parameter>s</parameter> 
+    is masked with 
+    <inlineequation>
+    <math>
+      <msup><mn>2</mn><mi>m</mi></msup><mo>-</mo><mn>1</mn>
+    </math>
+    </inlineequation>, where
+    <replaceable>m</replaceable>
+    is the number of bits in the stencil buffer.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Associated Gets</title>
+
+    <para>
+    <citerefentry><refentrytitle>glGetInteger</refentrytitle></citerefentry>
+    with argument <constant>GL_STENCIL_BITS</constant>
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glClear</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glClearColor</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glClearDepth</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glGetInteger</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glStencilFunc</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glStencilOp</refentrytitle></citerefentry>,
+    <citerefentry><refentrytitle>glStencilMask</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>

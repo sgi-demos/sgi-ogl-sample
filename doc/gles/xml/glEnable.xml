@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "DTD/docbook/docbookx.dtd">
+
+<!--
+  License Applicability. Except to the extent portions of this file are
+  made subject to an alternative license as permitted in the SGI Free
+  Software License B, Version 1.1 (the "License"), the contents of this
+  file are subject only to the provisions of the License. You may not use
+  this file except in compliance with the License. You may obtain a copy
+  of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+  Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+
+  http://oss.sgi.com/projects/FreeB
+
+  Note that, as provided in the License, the Software is distributed on an
+  "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+  DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+  CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+  PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+  Original Code. The Original Code is: OpenGL ES Reference Manual,
+  Version 1.0, released September 2003, developed by Silicon Graphics,
+  Inc.  The Original Code is Copyright (c) 2003 Silicon Graphics, Inc.
+  Copyright in any portions created by third parties is as indicated
+  elsewhere herein.  All Rights Reserved.
+-->
+
+<refentry id="glEnable">
+  <refmeta>
+    <refentrytitle>glEnable</refentrytitle>
+    <manvolnum>3G</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refdescriptor>glEnable</refdescriptor>
+    <refname>glEnable</refname>
+    <refname>glDisable</refname>
+    <refpurpose>enable or disable server-side GL capabilities</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>C Specification</title>
+
+    <funcsynopsis>
+      <funcprototype>
+        <funcdef>void <function>glEnable</function></funcdef>
+        <paramdef>GLenum <parameter>cap</parameter></paramdef>
+      </funcprototype>
+      <funcprototype>
+        <funcdef>void <function>glDisable</function></funcdef>
+        <paramdef>GLenum <parameter>cap</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>cap</parameter>
+        </term>
+
+        <listitem>
+          <para>Specifies a symbolic constant indicating a GL capability.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para><function>glEnable</function> and <function>glDisable</function>
+    enable and disable various capabilities. The initial value for
+    each capability with the exception of 
+    <constant>GL_DITHER</constant> and 
+    <constant>GL_MULTISAMPLE</constant> is 
+    <constant>GL_FALSE</constant>. The initial value for 
+    <constant>GL_DITHER</constant> and 
+    <constant>GL_MULTISAMPLE</constant> is 
+    <constant>GL_TRUE</constant>.</para>
+
+    <para>Both <function>glEnable</function> and <function>glDisable</function>
+    take a single argument, <parameter>cap</parameter>,
+    which can assume one of the following values:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <constant>GL_ALPHA_TEST</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, do alpha testing. See 
+          <citerefentry><refentrytitle>glAlphaFunc</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_BLEND</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, blend the incoming color values
+          with the values in the color buffers. See 
+          <citerefentry><refentrytitle>glBlendFunc</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_COLOR_LOGIC_OP</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, apply the currently selected logical
+          operation to the incoming color and color buffer values. See 
+          <citerefentry><refentrytitle>glLogicOp</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_COLOR_MATERIAL</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, have ambient and diffuse material
+          parameters track the current color.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_CULL_FACE</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, cull polygons based on their winding in
+          window coordinates. See 
+          <citerefentry><refentrytitle>glCullFace</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_DEPTH_TEST</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, do depth comparisons and update the
+          depth buffer. Note that even if the depth buffer exists
+          and the depth mask is non-zero, the depth buffer is not
+          updated if the depth test is disabled. See 
+          <citerefentry><refentrytitle>glDepthFunc</refentrytitle></citerefentry>,
+          <citerefentry><refentrytitle>glDepthMask</refentrytitle></citerefentry>,
+          and 
+          <citerefentry><refentrytitle>glDepthRange</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_DITHER</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, dither color components or indices
+          before they are written to the color buffer.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_FOG</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, blend a fog color into the
+          posttexturing color. See 
+          <citerefentry><refentrytitle>glFog</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_LIGHT</constant><replaceable>i</replaceable>
+        </term>
+
+        <listitem>
+          <para>If enabled, include light <replaceable>i</replaceable>
+          in the evaluation of the lighting equation. See 
+          <citerefentry><refentrytitle>glLightModel</refentrytitle></citerefentry>
+          and 
+          <citerefentry><refentrytitle>glLight</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_LIGHTING</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, use the current lighting parameters to
+          compute the vertex color. Otherwise, simply
+          associate the current color with each vertex. See 
+          <citerefentry><refentrytitle>glMaterial</refentrytitle></citerefentry>, 
+          <citerefentry><refentrytitle>glLightModel</refentrytitle></citerefentry>, and 
+          <citerefentry><refentrytitle>glLight</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_LINE_SMOOTH</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, draw lines with correct filtering.
+          Otherwise, draw aliased lines. See 
+          <citerefentry><refentrytitle>glLineWidth</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_MULTISAMPLE</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, perform multisampling of fragments
+          for single-pass antialiasing and other effects. See
+          <citerefentry><refentrytitle>glSampleCoverage</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_NORMALIZE</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, normal vectors 
+          are scaled to unit length after transformation. See 
+          <citerefentry><refentrytitle>glNormal</refentrytitle></citerefentry> and
+          <citerefentry><refentrytitle>glNormalPointer</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_POINT_SMOOTH</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, draw points with proper filtering.
+          Otherwise, draw aliased points. See 
+          <citerefentry><refentrytitle>glPointSize</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_POLYGON_OFFSET_FILL</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled,
+          an offset is added to depth values of a polygon's
+          fragments before the depth comparison is performed. See 
+          <citerefentry><refentrytitle>glPolygonOffset</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_RESCALE_NORMAL</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, normal vectors are scaled
+          by a factor derived from the modelview matrix. See 
+          <citerefentry><refentrytitle>glNormal</refentrytitle></citerefentry> and
+          <citerefentry><refentrytitle>glNormalPointer</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_SAMPLE_ALPHA_TO_MASK</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, convert fragment alpha values to
+          multisample coverage modification masks.  See
+          <citerefentry><refentrytitle>glSampleCoverage</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_SAMPLE_ALPHA_TO_ONE</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, set fragment alpha to the maximum
+          permissible value after computing multisample
+          coverage modification masks.  See
+          <citerefentry><refentrytitle>glSampleCoverage</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_SAMPLE_MASK</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, apply a mask to modify fragment
+          coverage during multisampling.  See
+          <citerefentry><refentrytitle>glSampleCoverage</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_SCISSOR_TEST</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, discard fragments that are outside the
+          scissor rectangle. See 
+          <citerefentry><refentrytitle>glScissor</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_STENCIL_TEST</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, do stencil testing and update the
+          stencil buffer. See 
+          <citerefentry><refentrytitle>glStencilFunc</refentrytitle></citerefentry>,
+          <citerefentry><refentrytitle>glStencilMask</refentrytitle></citerefentry>,
+          and 
+          <citerefentry><refentrytitle>glStencilOp</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <constant>GL_TEXTURE_2D</constant>
+        </term>
+
+        <listitem>
+          <para>If enabled, two-dimensional texturing is performed
+          for the active texture unit. See 
+          <citerefentry><refentrytitle>glActiveTexture</refentrytitle></citerefentry>, 
+          <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry>,
+          <citerefentry><refentrytitle>glCompressedTexImage2D</refentrytitle></citerefentry>,
+          and
+          <citerefentry><refentrytitle>glCopyTexImage2D</refentrytitle></citerefentry>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Errors</title>
+
+    <para><constant>GL_INVALID_ENUM</constant> is generated if 
+    <parameter>cap</parameter> 
+    is not one of the values listed previously.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>See Also</title>
+
+    <para>
+    <citerefentry><refentrytitle>glActiveTexture</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glAlphaFunc</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glBlendFunc</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glCompressedTexImage2D</refentrytitle></citerefentry>,
+    <citerefentry><refentrytitle>glCopyTexImage2D</refentrytitle></citerefentry>,
+    <citerefentry><refentrytitle>glCullFace</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glDepthFunc</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glDepthRange</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glEnableClientState</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glFog</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glLight</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glLightModel</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glLineWidth</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glLogicOp</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glMaterial</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glNormal</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glPointSize</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glPolygonOffset</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glSampleCoverage</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glScissor</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glStencilFunc</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glStencilOp</refentrytitle></citerefentry>, 
+    <citerefentry><refentrytitle>glTexImage2D</refentrytitle></citerefentry>
+    </para>
+  </refsect1>
+</refentry>
